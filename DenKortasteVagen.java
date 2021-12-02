@@ -7,10 +7,10 @@ class DenKortasteVagen
 	{
 		int[][] avstand = new int [a.length][c.length];//skapar ny vektor avstand och samlar alla v�gar i den
 		for (int i = 0; i < a.length; i++)
-						{
-							for(int j = 0; j < c.length; j++)
-								avstand[i][j] = a[i] + b[i][j] + c[j];
-						}
+		{
+			for(int j = 0; j < c.length; j++)
+				avstand[i][j] = a[i] + b[i][j] + c[j];
+		}
 
 		int[] mellanstationer = new int [2]; //vektorn som ska returneras, med stationernas nummer
 		int langd = avstand[0][0];
@@ -28,7 +28,7 @@ class DenKortasteVagen
 			}
 		}
 
-	return mellanstationer;
+	    return mellanstationer;
 	}
 
 	public static int langd (int[] a, int[][] b, int[] c) //L�ngden p� den kortaste v�gen

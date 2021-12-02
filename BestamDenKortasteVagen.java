@@ -36,8 +36,8 @@ class BestamDenKortasteVagen
 		}
 
 		System.out.println("Skriv in avstanden pa vagarna mellan stationerna i zon 3 och slutstationen: ");
-			for (int i = 0; i < zon3Antal; i++)
-				vagar34[i] = in.nextInt();
+		for (int i = 0; i < zon3Antal; i++)
+			vagar34[i] = in.nextInt();
 
 		System.out.println("Stationerna pa den kortaste vagen ar: "); //Printar vilka stationer som finns på den kortaste vägen
 		for (int i = 0; i < 2; i++)
@@ -45,5 +45,4 @@ class BestamDenKortasteVagen
 
 		System.out.println ("Kortaste vagen ar sa har lang: " + DenKortasteVagen.langd (vagar12, vagar23, vagar34)); //Printar avståndet
 	}
-
 }
