@@ -1,14 +1,15 @@
 import java.util.*; // Scanner
 import static java.lang.System.out;
+
 class OperationerMedNaturligaHeltalGivnaSomTeckenstrangar
 {
 	public static void main (String[] args)
 	{
 		out.println ("OPERATIONER MED NATURLIGA HELTAL GIVNA SOM TECKENSTRANGAR\n");
 
-		// mata in två naturliga heltal
+		// mata in tvï¿½ naturliga heltal
 		Scanner in = new Scanner (System.in);
-		out.println ("två naturliga heltal:");
+		out.println ("tva naturliga heltal:");
 		String tal1 = in.next ();
 		String tal2 = in.next ();
 		out.println ();
@@ -17,30 +18,19 @@ class OperationerMedNaturligaHeltalGivnaSomTeckenstrangar
 		String summa = addera (tal1, tal2);
 		visa (tal1, tal2, summa, '+');
 
+		String differens = subtrahera (tal1, tal2);
+		visa (tal1, tal2, differens, '-');
 		// subtrahera heltalen och visa resultatet
-		// koden här
+		// koden hï¿½r
 	}
 
-		// addera tar emot två naturliga heltal givna som teckensträngar, och returnerar deras
-		// summa som en teckensträng.
-		public static String addera (String tal1, String tal2)
-		{
-		// koden ska skrivas här
-		}
 
-		// subtrahera tar emot två naturliga heltal givna som teckensträngar, och returnerar
-		// deras differens som en teckensträng.
-		// Det första heltalet är inte mindre än det andra heltalet.
-		public static String subtrahera (String tal1, String tal2)
-		{
-		// koden ska skrivas här
-		}
 
-		// visa visar två givna naturliga heltal, och resultatet av en aritmetisk operation
-		// utförd i samband med hetalen
+		// visa visar tvï¿½ givna naturliga heltal, och resultatet av en aritmetisk operation
+		// utfï¿½rd i samband med hetalen
 		public static void visa (String tal1, String tal2, String resultat, char operator)
 		{
-		// sätt en lämplig längd på heltalen och resultatet
+		// sï¿½tt en lï¿½mplig lï¿½ngd pï¿½ heltalen och resultatet
 			int len1 = tal1.length ();
 			int len2 = tal2.length ();
 			int len = resultat.length ();
@@ -51,19 +41,85 @@ class OperationerMedNaturligaHeltalGivnaSomTeckenstrangar
 
 			// visa heltalen och resultatet
 			out.println (" " + tal1);
-			out.println ("" + operator + " " + tal2);
+			out.println (" " + operator + " " + tal2);
 			for (int i = 0; i < maxLen + 2; i++)
 				out.print ("-");
 			out.println ();
 			out.println (" " + resultat + "\n");
 		}
 
-		// sattLen lägger till ett angivet antal mellanslag i början av en given sträng
+		// sattLen lï¿½gger till ett angivet antal mellanslag i bï¿½rjan av en given strï¿½ng
 		public static String sattLen (String s, int antal)
 		{
 			StringBuilder sb = new StringBuilder (s);
 			for (int i = 0; i < antal; i++)
-				sb.insert (0, " ");
+				sb.insert (0, "0");
 			return sb.toString ();
+		}
+
+		public static StringBuilder sattLen (StringBuilder s, int antal)
+		{
+			StringBuilder sb = new StringBuilder (s);
+			for (int i = 0; i < antal; i++)
+				sb.insert (0, '0');
+			return sb;
+		}
+
+		// addera tar emot tvï¿½ naturliga heltal givna som teckenstrï¿½ngar, och returnerar deras
+		// summa som en teckenstrï¿½ng.
+		public static String addera (String tal1, String tal2)
+		{
+			if (tal1.length() > tal2.length()) //lÃ¤gger till nollor i bÃ¶rjan av talen om nÃ¥got tal Ã¤r lÃ¤ngre Ã¤n det andra
+				tal2 = sattLen (tal2, tal1.length() - tal2.length());
+			else if (tal2.length() > tal1.length())
+				tal1 = sattLen (tal1, tal2.length() - tal1.length());
+
+			StringBuilder sb_addition = new StringBuilder(); //sb_addition Ã¤r summan av parametrarna
+			int minnessiffra = 0;
+
+			for (int i = tal1.length() - 1; i >= 0; i--) //adderar siffrorna i de tvÃ¥ talen var fÃ¶r sig, motsvarande lÃ¥ng addition
+			{
+				int sum =  (tal1.charAt(i) + tal2.charAt(i) - 96 + minnessiffra); //minus 96  pga unicode 48 = 0, 2* 48 = 96. AnvÃ¤nda 2 * '0' istÃ¤llet?
+				if (sum > 9)
+				{
+					sum -= 10;
+					minnessiffra = 1;
+				}
+				else
+					minnessiffra = 0;
+				sb_addition.insert (0, sum);
+			}
+			if (minnessiffra == 1)
+				sb_addition.insert (0, 1);
+
+			return sb_addition.toString();
+		}
+
+		// subtrahera tar emot tvï¿½ naturliga heltal givna som teckenstrï¿½ngar, och returnerar
+		// deras differens som en teckenstrï¿½ng.
+		// Det fï¿½rsta heltalet ï¿½r inte mindre ï¿½n det andra heltalet.
+		public static String subtrahera (String tal1, String tal2)
+		{
+			if (tal1.length() > tal2.length()) //lÃ¤gger till nollor i bÃ¶rjan av talen om nÃ¥got tal Ã¤r lÃ¤ngre Ã¤n det andra
+				tal2 = sattLen (tal2, tal1.length() - tal2.length());
+			else if (tal2.length() > tal1.length())
+				tal1 = sattLen (tal1, tal2.length() - tal1.length());
+
+			StringBuilder sb_subtraction = new StringBuilder(); //sb_subtraction Ã¤r differensen mellan parametrarna
+			int minnessiffra = 0;
+
+			for (int i = tal1.length() - 1; i >= 0; i--) //subtraherar siffrorna i de tvÃ¥ talen var fÃ¶r sig
+			{
+				int difference =  (tal1.charAt(i) - tal2.charAt(i) - minnessiffra);
+				if (difference < 0)
+				{
+					minnessiffra = 1;
+					difference += 10;
+				}
+				else
+					minnessiffra = 0;
+				sb_subtraction.insert (0, difference);
+			}
+			return sb_subtraction.toString();
 		}
 }
