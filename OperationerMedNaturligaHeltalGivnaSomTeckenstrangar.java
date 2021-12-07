@@ -40,12 +40,12 @@ class OperationerMedNaturligaHeltalGivnaSomTeckenstrangar
 			resultat = sattLen (resultat, maxLen - len);
 
 			// visa heltalen och resultatet
-			out.println (" " + tal1);
-			out.println (" " + operator + " " + tal2);
+			out.println ("  " + tal1);
+			out.println ("" + operator + " " + tal2);
 			for (int i = 0; i < maxLen + 2; i++)
 				out.print ("-");
 			out.println ();
-			out.println (" " + resultat + "\n");
+			out.println ("  " + resultat + "\n");
 		}
 
 		// sattLen l�gger till ett angivet antal mellanslag i b�rjan av en given str�ng
