@@ -96,16 +96,20 @@ public class Polylinje
 	public void laggTillFramfor (Punkt hornGammalt, String hornNamn)
 	{
 		Punkt hornNytt = new Punkt (hornGammalt);
-		horn = Arrays.copyOf(horn, horn.length + 1);
-		int i = horn.length - 2;
+		Punkt[] hArray = Arrays.copyOf(horn, horn.length + 1);
+		int i = horn.length - 1;
 		while (!horn[i].getNamn().equals(hornGammalt.getNamn() ))
 		{
-			horn[i + 1] = horn[i];
+			hArray[i + 1] = horn[i];
 			i--;
 		}
-		System.out.println("ersattare: " + hornNytt);
-		System.out.println("ersatt: " + hornGammalt);
-		System.out.println(horn.length);
+		hArray[i + 1] = hornNytt;
+		while (i >= 0)
+		{
+			hArray[i] = horn[i];
+			i--;
+		}
+		horn = hArray;
 	}
 
 	public void taBort (String hornNamn)
