@@ -1,3 +1,4 @@
+import java.util.*;//Arrays
 public class Polylinje
 {
 	private Punkt[] horn;
@@ -20,14 +21,19 @@ public class Polylinje
 	{
 		String s = "{[";
 		for (int i = 0; i < horn.length; i++)
-			s += horn[i].toString() + ", ";
-		s += (" Farg: " + this.getFarg() + " Bredd: " + this.getBredd() + "]}");
+			s += " " + horn[i].toString();
+		s += (" ], " + this.getFarg() + ", " + this.getBredd() ) + "}";
 		return s;
 	}
 
 	public Punkt[] getHorn ()
 	{
-		return null;
+		Punkt[] arrayH = new Punkt[horn.length];
+		for (int i = 0; i < horn.length; i++)
+		{
+			arrayH[i] = new Punkt (horn[i]);
+		}
+		return arrayH;
 	}
 
 	public String getFarg ()
@@ -54,16 +60,26 @@ public class Polylinje
 	{
 		char hornNamn = 'A';
 		for (int i = 0; i < horn.length; i++)
-			horn[i].setNamn(String.valueOf(hornNamn));
+		{
+			horn[i].setName(String.valueOf(hornNamn));
 			hornNamn++;
+		}
 	}
 
 	public double langd ()
 	{
 		int langd = 0;
-		for (int i = 0; i<horn.length; i++)
+		for (int i = 0; i < horn.length; i++)
 			langd++;
 		return langd;
+	}
+
+	public Punkt getPunkt (String namn)
+	{
+		int i = 0;
+		while (!horn[i].getNamn().equals(namn))
+			i++;
+		return horn[i];
 	}
 
 	public void laggTill (Punkt horn)
@@ -77,10 +93,21 @@ public class Polylinje
 		this.horn = h;
 	}
 
-	public void laggTillFramfor (Punkt horn, String hornNamn)
+	public void laggTillFramfor (Punkt hornGammalt, String hornNamn)
 	{
-
+		Punkt hornNytt = new Punkt (hornGammalt);
+		horn = Arrays.copyOf(horn, horn.length + 1);
+		int i = horn.length - 2;
+		while (!horn[i].getNamn().equals(hornGammalt.getNamn() ))
+		{
+			horn[i + 1] = horn[i];
+			i--;
+		}
+		System.out.println("ersattare: " + hornNytt);
+		System.out.println("ersatt: " + hornGammalt);
+		System.out.println(horn.length);
 	}
+
 	public void taBort (String hornNamn)
 	{
 

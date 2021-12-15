@@ -30,15 +30,16 @@ class Punkt
 			this.y = 0;
 	}
 
-	public Punkt (Punkt p) //Kopieringskonstruktor, sätter y till 0 pga
+	public Punkt (Punkt p) //Kopieringskonstruktor
 	{
 		this.x = p.getX ();
-		this.y = 0;
+		this.y = p.getY ();
+		this.namn = p.getNamn ();
 	}
 
 	public String toString ()
 	{
-		return namn + " (" + x + ", " + y + ")";
+		return "( " + this.namn + " " + x + " " + y + ")";
 	}
 
 	public String getNamn ()
@@ -66,7 +67,7 @@ class Punkt
 		this.y = y;
 	}
 
-	public void setNamn(String namn)
+	public void setName(String namn)
 	{
 		this.namn = namn;
 	}

@@ -6,6 +6,10 @@ class PolylinjeTest
 		Scanner input = new Scanner (System.in);
 		System.out.println("Skriv in hur manga horn som polylinjen ska besta av: ");
 		int antal = input.nextInt();
+		System.out.println("Skriv in onskad farg pa polylinjen: ");
+		String farg = input.next();
+		System.out.println("Skriv in onskad bredd pa polylinjen: ");
+		int bredd = input.nextInt();
 
 		Punkt[] pArray = new Punkt[antal];
 		for (int i = 0; i < pArray.length; i++)
@@ -15,10 +19,15 @@ class PolylinjeTest
 
 		Polylinje pl = new Polylinje(pArray);
 
-		pl.setFarg("Vit");
-		pl.setBredd(3);
+		pl.setFarg(farg);
+		pl.setBredd(bredd);
 		pl.setNamn();
 
+		System.out.println(pl);
+
+		System.out.println("Valj vilket horn som ska fa ett nytt horn inlagt framfor sig: ");
+		String framforNamn = input.next();
+		pl.laggTillFramfor(pl.getPunkt (framforNamn) , framforNamn);
 		System.out.println(pl);
 	}
 }
