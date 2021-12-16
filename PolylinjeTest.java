@@ -27,7 +27,22 @@ class PolylinjeTest
 
 		System.out.println("Valj vilket horn som ska fa ett nytt horn inlagt framfor sig: ");
 		String framforNamn = input.next();
-		pl.laggTillFramfor(pl.getPunkt (framforNamn) , framforNamn);
+
+		pl.laggTillFramfor(pl.getHorn (framforNamn) , framforNamn);
 		System.out.println(pl);
+
+		Punkt p = new Punkt(6);
+		pl.laggTill (p);
+		System.out.println (pl);
+		pl.setFarg ("bla");
+
+		pl.setBredd (5);
+		System.out.println(pl);
+		pl.setNamn();
+		System.out.println(pl);
+
+		pl.taBort ("B");
+		System.out.println(pl);
+
 	}
 }

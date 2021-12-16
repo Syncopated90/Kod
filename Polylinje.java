@@ -74,7 +74,7 @@ public class Polylinje
 		return langd;
 	}
 
-	public Punkt getPunkt (String namn)
+	public Punkt getHorn (String namn)
 	{
 		int i = 0;
 		while (!horn[i].getNamn().equals(namn))
@@ -114,7 +114,27 @@ public class Polylinje
 
 	public void taBort (String hornNamn)
 	{
+		Punkt[] hArray = Arrays.copyOf(horn, horn.length - 1);
+		int i = 0;
+		while (! horn[i].getNamn().equals(hornNamn))
+		{
+			hArray[i] = horn[i];
+			i++;
+		}
+		//i++;
+		hArray[i] = horn [i + 1];
+		i++;
+		while (i != hArray.length)
+		{
+			hArray[i] = horn [i + 1];
+			i++;
+		}
+		horn = hArray;
+		/*i++;
 
+		for (int j = i; j < horn.length; j++)
+			hArray[j] = horn[j + 1];
+		horn = hArray;*/
 	}
 
 
