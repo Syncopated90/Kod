@@ -25,7 +25,6 @@ class ValjPolylinje
 			System.out.println("Ingen polylinje ar gul");
 		else
 			System.out.println(kortastGul);
-			//System.out.println(kortastGul.getFarg());
 	}
 	// slumpPunkt returnerar en punkt med ett slumpmässigt namn, som är en stor bokstav i
 	// det engelska alfabetet, och slumpmässiga koordinater.

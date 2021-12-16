@@ -24,7 +24,7 @@ class PolylinjeTest
 		pl.setNamn();
 
 		System.out.println(pl);
-		System.out.println("Valj vilket horn som ska fa ett nytt horn inlagt framfor sig: ");
+		/*System.out.println("Valj vilket horn som ska fa ett nytt horn inlagt framfor sig: ");
 		String framforNamn = input.next();
 
 		pl.laggTillFramfor(pl.getPoint (framforNamn) , framforNamn);
@@ -41,7 +41,13 @@ class PolylinjeTest
 		System.out.println(pl);
 
 		pl.taBort ("B");
-		System.out.println(pl);
+		System.out.println(pl);*/
 
+		Polylinje.PolylinjeIterator it = pl.new PolylinjeIterator ();
+		while (it.finnsHorn() == true)
+		{
+			System.out.println(it.horn());
+			it.gaFram();
+		}
 	}
 }
