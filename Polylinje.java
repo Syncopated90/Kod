@@ -73,10 +73,10 @@ public class Polylinje
 
 	public double langd () //returnerar polylinjens längd
 	{
-		int langd = 0;
+		double langd = 0;
 		for (int i = 0; i < horn.length; i++)
 			langd++;
-		int length = langd;
+		double length = langd;
 		return length;
 	}
 

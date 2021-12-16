@@ -1,17 +1,31 @@
+import java.util.*; //Random
 class ValjPolylinje
 {
 	public static final Random rand = new Random ();
 	public static final int ANTAL_POLYLINJER = 10;
 	public static void main (String[] args)
 	{
-		// skapa ett antal slumpmässiga polylinjer
 		Polylinje[] polylinjer = new Polylinje[ANTAL_POLYLINJER];
-
 		for (int i = 0; i < ANTAL_POLYLINJER; i++)
+			{
 			polylinjer[i] = slumpPolylinje ();
-		// visa polylinjerna
-		// bestäm den kortaste av de polylinjer som är gula
-		// visa den valda polylinjen
+			System.out.println(polylinjer[i]);
+			}
+
+		Polylinje kortastGul = new Polylinje ();
+		kortastGul = polylinjer[0];
+		for ( int i = 1; i < ANTAL_POLYLINJER; i++)
+		{
+			if (polylinjer[i].getFarg().equals("gul") && polylinjer[i].langd() <= kortastGul.langd())
+				kortastGul = polylinjer[i];
+			else if (!kortastGul.getFarg().equals("gul") && polylinjer[i].getFarg().equals("gul"))
+				kortastGul = polylinjer[i];
+		}
+		if ( ! kortastGul.getFarg().equals("gul"))
+			System.out.println("Ingen polylinje ar gul");
+		else
+			System.out.println(kortastGul);
+			//System.out.println(kortastGul.getFarg());
 	}
 	// slumpPunkt returnerar en punkt med ett slumpmässigt namn, som är en stor bokstav i
 	// det engelska alfabetet, och slumpmässiga koordinater.
@@ -35,11 +49,21 @@ class ValjPolylinje
 		// ett och samma namn kan inte förekomma flera gånger
 		Punkt valdPunkt = null;
 		char valtChar = 0;
-		while (antalValdaHorn < antalHorn)
+		while (antalValdaHorn <= antalHorn)
 		{
-
+			Punkt p = slumpPunkt();
+			valtChar = p.getNamn().charAt(0);
+			while (valdaNamn[valtChar - 65] == true)
+				{
+					p = slumpPunkt();
+					valtChar = p.getNamn().charAt(0);
+				}
+			polylinje.laggTill (p);
+			antalValdaHorn++;
 		}
 
-		// sätt färg
+		String[] farger = new String[] {"rod", "bla", "gul"};
+		polylinje.setFarg(farger[rand.nextInt(3)]);
+		return polylinje;
 	}
 }
