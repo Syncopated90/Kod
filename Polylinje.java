@@ -1,3 +1,6 @@
+/*Definitionsklass för en polylinje, en vektor med Punkt-objekt. Polylinjen har
+färg och bredd, och punkterna har x- och y-koordinater*/
+
 import java.util.*;//Arrays
 public class Polylinje
 {
@@ -10,7 +13,7 @@ public class Polylinje
 		this.horn = new Punkt[0];
 	}
 
-	public Polylinje (Punkt[] horn)
+	public Polylinje (Punkt[] horn) //Konstruktor som tar emot en vektor med Punkt-objekt och kopierar över de punkterna till Polylinjen
 	{
 		this.horn = new Punkt[horn.length];
 		for (int i = 0; i < horn.length; i++)
@@ -26,7 +29,7 @@ public class Polylinje
 		return s;
 	}
 
-	public Punkt[] getHorn ()
+	public Punkt[] getHorn () //returnerar en kopia av polylinjens vektor med hörn
 	{
 		Punkt[] arrayH = new Punkt[horn.length];
 		for (int i = 0; i < horn.length; i++)
@@ -36,27 +39,29 @@ public class Polylinje
 		return arrayH;
 	}
 
-	public String getFarg ()
+	public String getFarg () //returnerar objektets färg
 	{
-		return farg;
+		String nyans = this.farg;
+		return nyans;
 	}
 
-	public int getBredd ()
+	public int getBredd () //returnerar objektets bredd
 	{
-		return bredd;
+		int width = this.bredd;
+		return width;
 	}
 
-	public void setFarg (String farg)
+	public void setFarg (String farg) //ändrar polylinjens färg
 	{
 		this.farg = farg;
 	}
 
-	public void setBredd (int bredd)
+	public void setBredd (int bredd) //ändrar polylinjens bredd
 	{
 		this.bredd = bredd;
 	}
 
-	public void setNamn ()
+	public void setNamn () //Namnger alla punkterna i polylinjen efter sin position, första blir A, andra B osv.
 	{
 		char hornNamn = 'A';
 		for (int i = 0; i < horn.length; i++)
@@ -66,23 +71,25 @@ public class Polylinje
 		}
 	}
 
-	public double langd ()
+	public double langd () //returnerar polylinjens längd
 	{
 		int langd = 0;
 		for (int i = 0; i < horn.length; i++)
 			langd++;
-		return langd;
+		int length = langd;
+		return length;
 	}
 
-	public Punkt getHorn (String namn)
+	public Punkt getPoint (String namn) //returnerar en kopia av ett hörn utifrån dess namn
 	{
 		int i = 0;
 		while (!horn[i].getNamn().equals(namn))
 			i++;
-		return horn[i];
+		Punkt p = new Punkt (horn[i]);
+		return p;
 	}
 
-	public void laggTill (Punkt horn)
+	public void laggTill (Punkt horn)//lägger till en punkt sist i polylinjen
 	{
 		Punkt[] h = new Punkt[this.horn.length + 1];
 		int i = 0;
@@ -93,7 +100,7 @@ public class Polylinje
 		this.horn = h;
 	}
 
-	public void laggTillFramfor (Punkt hornGammalt, String hornNamn)
+	public void laggTillFramfor (Punkt hornGammalt, String hornNamn) //lägger till en ny punkt framför en annan punkt
 	{
 		Punkt hornNytt = new Punkt (hornGammalt);
 		Punkt[] hArray = Arrays.copyOf(horn, horn.length + 1);
@@ -112,7 +119,7 @@ public class Polylinje
 		horn = hArray;
 	}
 
-	public void taBort (String hornNamn)
+	public void taBort (String hornNamn) //tar bort ett hörn utifrån dess namn
 	{
 		Punkt[] hArray = Arrays.copyOf(horn, horn.length - 1);
 		int i = 0;
@@ -121,7 +128,6 @@ public class Polylinje
 			hArray[i] = horn[i];
 			i++;
 		}
-		//i++;
 		hArray[i] = horn [i + 1];
 		i++;
 		while (i != hArray.length)
@@ -130,11 +136,6 @@ public class Polylinje
 			i++;
 		}
 		horn = hArray;
-		/*i++;
-
-		for (int j = i; j < horn.length; j++)
-			hArray[j] = horn[j + 1];
-		horn = hArray;*/
 	}
 
 
