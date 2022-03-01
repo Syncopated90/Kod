@@ -14,7 +14,7 @@
 #include <pic32mx.h>  /* Declarations of system-specific addresses etc */
 #include "gameheader.h"  /* Declarations for these labs */
 int new_game =0;
-int score = 237;
+int score = 0;
 int score_counter = 0;
 int ship_x = 5;
 int ship_y = 115;
@@ -28,7 +28,7 @@ char name[3] = {'A','A','A'};
 volatile int* LED = (volatile int*) 0xbf886110;
 
 
-void player_movement (void){
+void player_movement (void){//anropas inifrån ISRen
   int buttons = getbtns();
   int switches = getsw();
 
@@ -37,6 +37,7 @@ void player_movement (void){
         clear_ship(ship_x, ship_y);
         ship_y-=3;
     }
+    score++;
   }
 
   if ((buttons & 1) != 0){//move right
@@ -44,6 +45,7 @@ void player_movement (void){
       clear_ship(ship_x, ship_y);
       ship_y += 3;
     }
+    score++;
   }
 
   if ((buttons&2) != 0){//move up
@@ -105,8 +107,12 @@ void user_isr( void )
     for (i = 0; i < 3; i++)
       higscores[score_counter][i] = name[i];
     display_update();
-    if (switches == 4)
+    if (switches == 4){
       new_game = 1;
+      score_counter++;
+      if (score_counter == 10)
+        score_counter = 0;
+    }
   }
   (*LED)++;
   if (switches == 1)
@@ -136,6 +142,7 @@ void gameinit( void )
 /* This function is called repetitively from the main program */
 void game()
 {
+  //while(1){
   start_screen();
 	while(1){
 	  if (game_over == 1)
@@ -145,6 +152,10 @@ void game()
     display[i] = 0;
   while (new_game == 0)
     end_screen(score);
+  for(i = 0; i < 512; i++)
+    display[i] = 0;
+  display_image(0, display);
+  T2CON = 0;
   new_game = 0;
   game_over = 0;
   score = 0;
@@ -154,6 +165,5 @@ void game()
   char_marker = 0;
   timeoutcount = 0;
   update_count = 0;
-
   return;
 }

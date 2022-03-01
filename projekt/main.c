@@ -11,7 +11,6 @@
 #include "gameheader.h"  /* Declatations for these labs */
 
 int main(void) {
-
 	while(1){
     display_init();
     gameinit();
