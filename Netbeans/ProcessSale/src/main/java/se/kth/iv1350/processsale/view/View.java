@@ -9,6 +9,7 @@ public class View {
     private Controller contr;
     private ItemDTO scannedItem;
     static final int AMOUNT_PAID_BY_CUSTOMER = 500;
+    
     /**
     *Creates an instance of the class. 
     *@param contr Takes a controller object as parameter to get access to it.
