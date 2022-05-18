@@ -1,7 +1,7 @@
 package se.kth.iv1350.processsale.model;
 
-import DTO.ItemDTO;
-import DTO.SaleInformationDTO;
+import se.kth.iv1350.processsale.DTO.ItemDTO;
+import se.kth.iv1350.processsale.DTO.SaleInformationDTO;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

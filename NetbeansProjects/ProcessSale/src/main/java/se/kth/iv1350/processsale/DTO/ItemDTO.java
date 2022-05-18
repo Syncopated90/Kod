@@ -1,4 +1,4 @@
-package DTO;
+package se.kth.iv1350.processsale.DTO;
 
 /**
  *Container for all data regarding one item.

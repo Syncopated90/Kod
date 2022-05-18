@@ -1,6 +1,6 @@
 package se.kth.iv1350.processsale.integration;
 
-import DTO.SaleInformationDTO;
+import se.kth.iv1350.processsale.DTO.SaleInformationDTO;
 
 /**
  * Class representing the register at a point of sale.

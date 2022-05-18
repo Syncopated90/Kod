@@ -1,6 +1,6 @@
 package se.kth.iv1350.processsale.integration;
 
-import DTO.ItemDTO;
+import se.kth.iv1350.processsale.DTO.ItemDTO;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

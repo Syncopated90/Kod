@@ -1,6 +1,6 @@
 package se.kth.iv1350.processsale.view;
 
-import DTO.ItemDTO;
+import se.kth.iv1350.processsale.DTO.ItemDTO;
 import se.kth.iv1350.processsale.controller.Controller;
 /**
  * Contains dummy code representing the view layer of the program.

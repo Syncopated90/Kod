@@ -1,6 +1,7 @@
 package se.kth.iv1350.processsale.integration;
 
-import DTO.*; //ItemDTO and SaleInformationDTO
+import se.kth.iv1350.processsale.DTO.SaleInformationDTO;
+import se.kth.iv1350.processsale.DTO.ItemDTO;
 
 /**
  * Interface between the controller and external databases, 

@@ -1,7 +1,7 @@
 package se.kth.iv1350.processsale.controller;
 
-import DTO.ItemDTO;
-import DTO.SaleInformationDTO;
+import se.kth.iv1350.processsale.DTO.ItemDTO;
+import se.kth.iv1350.processsale.DTO.SaleInformationDTO;
 import se.kth.iv1350.processsale.integration.DatabaseConnectionException;
 import se.kth.iv1350.processsale.integration.DbHandler;
 import se.kth.iv1350.processsale.integration.ItemNotFoundException;

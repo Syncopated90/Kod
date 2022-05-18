@@ -1,5 +1,6 @@
 package se.kth.iv1350.processsale.model;
-import DTO.*; //ItemDTO and SaleInformationDTO
+import se.kth.iv1350.processsale.DTO.SaleInformationDTO;
+import se.kth.iv1350.processsale.DTO.ItemDTO;
 import java.time.LocalTime;
 
 /**

@@ -1,8 +1,8 @@
 
 package se.kth.iv1350.processsale.integration;
 
-import DTO.ItemDTO;
-import DTO.SaleInformationDTO;
+import se.kth.iv1350.processsale.DTO.ItemDTO;
+import se.kth.iv1350.processsale.DTO.SaleInformationDTO;
 
 /**
  *Class representing the interface with a receipt printer.

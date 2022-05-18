@@ -1,6 +1,6 @@
 package se.kth.iv1350.processsale.integration;
 
-import DTO.ItemDTO;
+import se.kth.iv1350.processsale.DTO.ItemDTO;
 
 /**
  * Thrown when the application can't connect to the inventory database.
