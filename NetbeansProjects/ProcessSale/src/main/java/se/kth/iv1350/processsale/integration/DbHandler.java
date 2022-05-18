@@ -1,5 +1,7 @@
 package se.kth.iv1350.processsale.integration;
 
+import java.util.ArrayList;
+import java.util.List;
 import se.kth.iv1350.processsale.DTO.SaleInformationDTO;
 import se.kth.iv1350.processsale.DTO.ItemDTO;
 
@@ -12,12 +14,14 @@ public class DbHandler {
     private ItemDTO[] inventoryAndAccountingSystems;
     private SaleInformationDTO[] databaseOfSoldItems;
     private CashRegister register;
+    private List<RegisterObserver> observers = new ArrayList<>();
     /**
      * Creates an instance of the class.
      * @param register CashRegister object.
      */
     public DbHandler(CashRegister register){
         this.register = register;
+        addRegisterObserver(new TotalRevenueFileOutput());
     }
     /**
      * Finds the DTO associated with the item identifier and returns it.
@@ -75,10 +79,22 @@ public class DbHandler {
     }
     /**
      * Updates the amount of cash in the register according to the total final 
-     * price of the items in the sale.
+     * price of the items in the sale. Also updates the observers.
      * @param saleInformationDTO DTO containing data of the finished sale.
      */
     public void updateRegister(SaleInformationDTO saleInformationDTO){
         register.updateRegister(saleInformationDTO);
+        updateObserver(saleInformationDTO);
+    }
+    private void updateObserver(SaleInformationDTO saleInformationDTO){
+        for(RegisterObserver obs:observers)
+            obs.updateAmountPaidToRegister(saleInformationDTO);
+    }
+    /**
+     * Adds an observer object to the list to be updated when money is paid to the register.
+     * @param regObs The observer object that's added.
+     */
+    public void addRegisterObserver(RegisterObserver regObs){
+        observers.add(regObs);
     }
 }

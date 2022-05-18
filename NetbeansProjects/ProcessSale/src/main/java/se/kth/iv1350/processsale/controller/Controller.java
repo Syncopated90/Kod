@@ -5,6 +5,7 @@ import se.kth.iv1350.processsale.DTO.SaleInformationDTO;
 import se.kth.iv1350.processsale.integration.DatabaseConnectionException;
 import se.kth.iv1350.processsale.integration.DbHandler;
 import se.kth.iv1350.processsale.integration.ItemNotFoundException;
+import se.kth.iv1350.processsale.integration.RegisterObserver;
 import se.kth.iv1350.processsale.model.Sale;
 
 /**
@@ -14,6 +15,7 @@ public class Controller {
     private Sale sale;
     private DbHandler dbhandler;
     private ItemDTO itemDTO;
+    private SaleInformationDTO saleinformation;
     
     /**
      * Creates an instance of the class.
@@ -79,19 +81,31 @@ public class Controller {
      * Prints a receipt and creates a log of the sale which is sent to an external database.
      */
     public void endSale(){
-        SaleInformationDTO saleinformation = sale.createSaleInformationDTO();
+        saleinformation = sale.createSaleInformationDTO();
         printReceipt(saleinformation);
         logSale(saleinformation);
+        
     }
     private void printReceipt(SaleInformationDTO saleinformation){
         dbhandler.printReceipt(saleinformation);
     }
-    private void logSale(SaleInformationDTO saleinformation){
-        dbhandler.updateDatabaseOfSoldItems(saleinformation);
-        
+    private void logSale(SaleInformationDTO saleInformation){
+        dbhandler.updateDatabaseOfSoldItems(saleInformation);
+        dbhandler.updateRegister(saleInformation);
     }
-
+    /**
+     * Calculates the total tax amount included in the current total price.
+     * @return The current total amount of tax to be paid.
+     */
     public double calculateTotalTaxAmount() {
         return sale.getTotalTaxAmount();
+    }
+    /**
+     * Adds a register observer to the list in dbhandler 
+     * which is updated when money is paid to the register.
+     * @param regObs The observer object to be added.
+     */
+    public void addRegisterObserver(RegisterObserver regObs){
+        dbhandler.addRegisterObserver(regObs);
     }
 }

@@ -1,6 +1,5 @@
 package se.kth.iv1350.processsale.DTO;
 
-import se.kth.iv1350.processsale.DTO.ItemDTO;
 import java.time.LocalTime;
 
 /**

@@ -11,11 +11,13 @@ public class View {
     static final int AMOUNT_PAID_BY_CUSTOMER = 500;
     
     /**
-    *Creates an instance of the class. 
+    *Creates an instance of the class. Also creates a total revenue observer 
+    * that shows the total amount paid to the register after every sale.
     *@param contr Takes a controller object as parameter to get access to it.
     */
     public  View (Controller contr){
         this.contr = contr;
+        contr.addRegisterObserver(new TotalRevenueView());
     }
     /**
      * Runs through a fake sale.
