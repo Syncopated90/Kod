@@ -9,10 +9,14 @@ import se.kth.iv1350.processsale.integration.RegisterObserver;
 public class TotalRevenueView implements RegisterObserver {
     private int amountPaidToRegister;
     
+    /**
+     * Prints the updated amount of money.
+     * @param saleinformation DTO containing the amount paid by the customer.
+     */
     @Override
     public void updateAmountPaidToRegister(SaleInformationDTO saleinformation){
         amountPaidToRegister += saleinformation.getTotalPrice();
-        System.out.println("View Observer: Total amount paid to register since start of prgram: " 
+        System.out.println("View Observer: Total amount paid to register since start of program: " 
                 + amountPaidToRegister);
-    };
+    }
 }

@@ -32,7 +32,7 @@ public class DbHandler {
      * @throws DatabaseConnectionException when the application can't access the database.
      */
     public ItemDTO lookupOfItem(int itemIdentifier) 
-            throws ItemNotFoundException, DatabaseConnectionException{
+            throws ItemNotFoundException{
         if(itemIdentifier == 9)
             throw new DatabaseConnectionException("Can't access database.");
         if(itemIdentifier >= 5 || itemIdentifier < 0)
@@ -84,9 +84,9 @@ public class DbHandler {
      */
     public void updateRegister(SaleInformationDTO saleInformationDTO){
         register.updateRegister(saleInformationDTO);
-        updateObserver(saleInformationDTO);
+        updateObservers(saleInformationDTO);
     }
-    private void updateObserver(SaleInformationDTO saleInformationDTO){
+    private void updateObservers(SaleInformationDTO saleInformationDTO){
         for(RegisterObserver obs:observers)
             obs.updateAmountPaidToRegister(saleInformationDTO);
     }

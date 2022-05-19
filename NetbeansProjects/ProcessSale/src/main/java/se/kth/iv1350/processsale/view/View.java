@@ -35,8 +35,8 @@ public class View {
     private void fakeScanOfItems(){
         for(int i=0; i<3; i++)
             scanItem(i);
-        scanItem(6);
-        scanItem(9);
+        //scanItem(6);
+        //scanItem(9);
     }
     private void scanItem(int itemIdentifier){
         try{
@@ -45,7 +45,7 @@ public class View {
             printRunningTotal();
         }
         catch(IllegalArgumentException iae){
-            showItemNotFoundMessage();
+            showItemNotFoundMessage(iae.getMessage());
             }
         catch(Exception e){
             showErrorMessage();
@@ -67,11 +67,12 @@ public class View {
     private void showChangeToReturn(){
         System.out.println("Change to be returned: " + contr.calculateChangeToBeReturned());
     }
-    private void showItemNotFoundMessage(){
-        System.out.println("Error: No item matching this identifier was found.");
+    private void showItemNotFoundMessage(String badItemIdentifier){
+        System.out.println("User message: No item matching item identifier " + badItemIdentifier 
+                + " was found.");
     }
     private void showErrorMessage(){
-        System.out.println("Program error.");
+        System.out.println("User message: Program error.");
     }
     
 }

@@ -11,7 +11,7 @@ public class ItemNotFoundException extends Exception{
      * @param itemNotFoundIdentifier itemIdentifier missing from the inventory.
      */
     public ItemNotFoundException(int itemNotFoundIdentifier){
-        super("No item matching " +itemNotFoundIdentifier + " was found in the inventory.");
+        super("No item matching identifier " +itemNotFoundIdentifier + " was found in the inventory.");
         this.itemNotFoundIdentifier = itemNotFoundIdentifier;
     }
     /**

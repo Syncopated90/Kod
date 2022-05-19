@@ -17,22 +17,19 @@ public class TotalRevenueFileOutput implements RegisterObserver{
      */
     public TotalRevenueFileOutput(){
         try {
-            FileWriter fw = new FileWriter(("RevenueLog.txt"), true);
-            revenueLogger = new PrintWriter(fw);
+            revenueLogger = new PrintWriter(new FileWriter(("RevenueLog.txt"), true));
         } catch (IOException ex) {
             System.out.println("Developer log: TotalRevenueFileOutput failed to create txt log");
         }
     }
     /**
      * Updates RevenueLog.txt with the amount paid to the register after a finished sale.
-     * @param saleinformation 
+     * @param saleinformation The DTO containing the final amount paid.
      */
     @Override
     public void updateAmountPaidToRegister(SaleInformationDTO saleinformation){
         totalAmount += saleinformation.getTotalPrice();
-        revenueLogger.write(logMessage + totalAmount);
-        revenueLogger.println(logMessage);
+        revenueLogger.println(logMessage + totalAmount);
         revenueLogger.flush();
-        revenueLogger.close();
     }
 }

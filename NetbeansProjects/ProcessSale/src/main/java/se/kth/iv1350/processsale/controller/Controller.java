@@ -39,16 +39,16 @@ public class Controller {
     * is not found in the database.
     * @throws RuntimeException when database can't be reached.
     */
-    public ItemDTO scanOfItem(int itemIdentifier) throws IllegalArgumentException, RuntimeException{
+    public ItemDTO scanOfItem(int itemIdentifier) throws IllegalArgumentException{
         try{
             itemDTO = dbhandler.lookupOfItem(itemIdentifier);
             sale.addItem(itemDTO);
             
         }
         catch(ItemNotFoundException ine){
-            System.out.println("Developer log message: Error, invalid item identifier: " + itemIdentifier
-                    + ", corresponding product not found in database");
-            throw new IllegalArgumentException();
+            System.out.println("Developer log message: " + ine.getMessage());
+            String message = Integer.toString(ine.getItemNotFound());
+            throw new IllegalArgumentException(message);
         }
         catch(DatabaseConnectionException dce){
             System.out.println("Developer log message: " + dce.getMessage());

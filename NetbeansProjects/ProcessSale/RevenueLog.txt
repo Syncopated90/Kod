@@ -1,0 +1,2 @@
+Total amount paid to the register since program started: 360
+Total amount paid to the register since program started: 720
