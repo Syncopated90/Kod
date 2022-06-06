@@ -2,13 +2,14 @@ package se.kth.iv1350.processsale.view;
 
 import se.kth.iv1350.processsale.DTO.ItemDTO;
 import se.kth.iv1350.processsale.controller.Controller;
+import se.kth.iv1350.processsale.controller.OperationFailedException;
 /**
  * Contains dummy code representing the view layer of the program.
  */
 public class View {
     private Controller contr;
     private ItemDTO scannedItem;
-    static final int AMOUNT_PAID_BY_CUSTOMER = 500;
+    static final int AMOUNT_PAID_BY_CUSTOMER = 700;
     
     /**
     *Creates an instance of the class. Also creates a total revenue observer 
@@ -26,7 +27,7 @@ public class View {
         contr.startSale();
         System.out.println("A fake sale has started.");
         fakeScanOfItems();
-        System.out.println("Three items have been scanned and their info printed.");
+        System.out.println("Four items have been scanned and their info printed.");
         showAmountToBePaid();
         contr.registerAmountPaid(AMOUNT_PAID_BY_CUSTOMER);
         contr.endSale();
@@ -35,6 +36,7 @@ public class View {
     private void fakeScanOfItems(){
         for(int i=0; i<3; i++)
             scanItem(i);
+        scanItem(2);
         //scanItem(6);
         //scanItem(9);
     }

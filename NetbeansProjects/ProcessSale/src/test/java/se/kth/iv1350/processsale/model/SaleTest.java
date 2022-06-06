@@ -13,36 +13,52 @@ import static org.junit.jupiter.api.Assertions.*;
 public class SaleTest {
     private Sale sale;
     private ItemDTO itemDTO;
-    double taxAmount;
-    double expectedTaxAmount = 55;
+    private ItemDTO[] itemDTOArray;
+    private SaleInformationDTO saleinfoDTO;
+    int testItemIdentifier = 2;
+    int AMOUNT_PAID = 500;
+    int EXPECTED_CHANGE_AMOUNT = 280;
+    double EXPECTED_TAX_AMOUNT = 55;
     
     @BeforeEach
     public void setUp() {
         sale  = new Sale();
-        itemDTO = new ItemDTO(2);
+        itemDTO = new ItemDTO(testItemIdentifier);
     }
     
     @AfterEach
     public void tearDown() {
         sale = null;
         itemDTO = null;
+        itemDTOArray = null;
+        saleinfoDTO = null;
     }
-
+    @Test 
+    public void testAddITem(){
+        sale.addItem(itemDTO);
+        saleinfoDTO = sale.createSaleInformationDTO();
+        itemDTOArray = saleinfoDTO.getItemDTOArray();
+        assertTrue(itemDTO.equals(itemDTOArray[0]), 
+                "Item added is not the same as the item found in the array.");
+    }
     @Test
-    public void testAddItem() {
+    public void testCheckIfItemAlreadyRegistered() {
+        sale.addItem(itemDTO);
+        assertTrue(sale.checkIfItemAlreadyRegistered(testItemIdentifier), 
+            "An item with the expected itemIdentifier was not added to the itemDTOArray.");
     }
-
     @Test
     public void testGetTotalTaxAmount() {
         sale.addItem(itemDTO);
-        taxAmount = sale.getTotalTaxAmount();
-        assertTrue(taxAmount == expectedTaxAmount, "Produced tax amount and expected amount are not the same");
-        
+        assertTrue(sale.getTotalTaxAmount() == EXPECTED_TAX_AMOUNT, 
+            "Produced tax amount and expected amount are not the same");
     }
-
     @Test
     public void testCalculateChangeToBeReturned() {
+        sale.addItem(itemDTO);
+        sale.registerAmountPaid(AMOUNT_PAID);
+        assertTrue(sale.calculateChangeToBeReturned() == EXPECTED_CHANGE_AMOUNT, 
+            "Actual change amount differed from expected change amount.");
     }
-
     
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="se.kth.iv1350.processsale.integration.ItemNotFoundExceptionTest" time="0" tests="4" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="se.kth.iv1350.processsale.integration.ItemNotFoundExceptionTest" time="0.001" tests="4" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="18"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -16,7 +16,7 @@
     <property name="user.country" value="US"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-18.0.1\bin"/>
-    <property name="sun.java.command" value="C:\Users\fredr\AppData\Local\Temp\surefire8933160219008865364\surefirebooter10179439159253414236.jar C:\Users\fredr\AppData\Local\Temp\surefire8933160219008865364 2022-05-19T23-05-34_394-jvmRun1 surefire13770127910431128552tmp surefire_0182369505807698731tmp"/>
+    <property name="sun.java.command" value="C:\Users\fredr\AppData\Local\Temp\surefire15288183019496910492\surefirebooter4212400799146680310.jar C:\Users\fredr\AppData\Local\Temp\surefire15288183019496910492 2022-06-06T21-47-40_487-jvmRun1 surefire4503906329364055352tmp surefire_05542073208272145706tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="C:\kod\NetbeansProjects\ProcessSale\target\test-classes;C:\kod\NetbeansProjects\ProcessSale\target\classes;C:\Users\fredr\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.6.0\junit-jupiter-api-5.6.0.jar;C:\Users\fredr\.m2\repository\org\apiguardian\apiguardian-api\1.1.0\apiguardian-api-1.1.0.jar;C:\Users\fredr\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\fredr\.m2\repository\org\junit\platform\junit-platform-commons\1.6.0\junit-platform-commons-1.6.0.jar;C:\Users\fredr\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.6.0\junit-jupiter-params-5.6.0.jar;C:\Users\fredr\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.6.0\junit-jupiter-engine-5.6.0.jar;C:\Users\fredr\.m2\repository\org\junit\platform\junit-platform-engine\1.6.0\junit-platform-engine-1.6.0.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -31,7 +31,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\fredr\AppData\Local\Temp\surefire8933160219008865364\surefirebooter10179439159253414236.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\fredr\AppData\Local\Temp\surefire15288183019496910492\surefirebooter4212400799146680310.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="18.0.1+10-24"/>
@@ -60,6 +60,6 @@
   </properties>
   <testcase name="testLookupOfItemNotFoundNegativeIdentifier" classname="se.kth.iv1350.processsale.integration.ItemNotFoundExceptionTest" time="0"/>
   <testcase name="testCorrectErrorMessage" classname="se.kth.iv1350.processsale.integration.ItemNotFoundExceptionTest" time="0"/>
-  <testcase name="testLookupOfItemNotThrowingException" classname="se.kth.iv1350.processsale.integration.ItemNotFoundExceptionTest" time="0"/>
+  <testcase name="testLookupOfItemNotThrowingException" classname="se.kth.iv1350.processsale.integration.ItemNotFoundExceptionTest" time="0.001"/>
   <testcase name="testLookupOfItemNotFound" classname="se.kth.iv1350.processsale.integration.ItemNotFoundExceptionTest" time="0"/>
 </testsuite>

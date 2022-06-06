@@ -11,7 +11,7 @@ public class Sale {
     private int totalPrice;
     private double totalTaxAmount;
     private int amountPaid;
-    private ItemDTO[] itemDTOArray = new ItemDTO[5];
+    private ItemDTO[] itemDTOArray;
     private SaleInformationDTO saleInformationDTO;
     
     /**
@@ -19,6 +19,7 @@ public class Sale {
      */
     public Sale (){
         setTimeOfSale();
+        itemDTOArray = new ItemDTO[20];
     }
     private void setTimeOfSale(){
         saleTime = LocalTime.now();
@@ -27,17 +28,32 @@ public class Sale {
         return saleTime;
     }
     /**
-     * Registers item as scanned and to be purchased by the customer. 
-     * No error handling is implemented.
+     * Registers item as scanned and to be purchased by the customer.
      * @param itemDTO Registered item.
      */
     public void addItem(ItemDTO itemDTO){
         if(checkIfArrayFull())
             enlargenArray();
         addItemToArray(itemDTO);
-        updateTotalPrice(itemDTO);
-        updateTotalTaxAmount(itemDTO);
+        updateTotalPriceAndTax(itemDTO);
     }
+    /**
+     * Checks if an item with the same itemIdentifier is already registered. If so it increases 
+     * the quantity of the item with one.
+     * @param itemIdentifier Item to be checked for.
+     * @return Returns true if there was an item with the same itemIdentifier already registered.
+     */
+    public boolean checkIfItemAlreadyRegistered(int itemIdentifier){
+        for(int i = 0; i < itemDTOArray.length; i++){
+            if(itemDTOArray[i] != null && itemDTOArray[i].getItemIdentifier() == itemIdentifier){
+                itemDTOArray[i] = new ItemDTO(itemDTOArray[i], 1);
+                updateTotalPriceAndTax(itemDTOArray[i]);
+                return true;
+            }
+        }
+        return false;
+    }
+    
     private boolean checkIfArrayFull(){
         if(itemDTOArray[itemDTOArray.length - 1] == null)
             return false;
@@ -58,6 +74,10 @@ public class Sale {
     }
     private ItemDTO[] getItemDTOArray(){
         return this.itemDTOArray;
+    }
+    private void updateTotalPriceAndTax(ItemDTO itemDTO){
+        updateTotalPrice(itemDTO);
+        updateTotalTaxAmount(itemDTO);
     }
     private void updateTotalPrice(ItemDTO itemDTO){
         totalPrice += itemDTO.getPrice();

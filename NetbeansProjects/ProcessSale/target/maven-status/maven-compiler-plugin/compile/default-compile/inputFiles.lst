@@ -2,6 +2,7 @@ C:\kod\NetbeansProjects\ProcessSale\src\main\java\se\kth\iv1350\processsale\inte
 C:\kod\NetbeansProjects\ProcessSale\src\main\java\se\kth\iv1350\processsale\integration\RegisterObserver.java
 C:\kod\NetbeansProjects\ProcessSale\src\main\java\se\kth\iv1350\processsale\integration\DbHandler.java
 C:\kod\NetbeansProjects\ProcessSale\src\main\java\se\kth\iv1350\processsale\DTO\SaleInformationDTO.java
+C:\kod\NetbeansProjects\ProcessSale\src\main\java\se\kth\iv1350\processsale\controller\OperationFailedException.java
 C:\kod\NetbeansProjects\ProcessSale\src\main\java\se\kth\iv1350\processsale\model\Sale.java
 C:\kod\NetbeansProjects\ProcessSale\src\main\java\se\kth\iv1350\processsale\integration\CashRegister.java
 C:\kod\NetbeansProjects\ProcessSale\src\main\java\se\kth\iv1350\processsale\integration\TotalRevenueFileOutput.java

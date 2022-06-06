@@ -42,17 +42,19 @@ public class Controller {
     public ItemDTO scanOfItem(int itemIdentifier) throws IllegalArgumentException{
         try{
             itemDTO = dbhandler.lookupOfItem(itemIdentifier);
+            if(sale.checkIfItemAlreadyRegistered(itemIdentifier)){
+                return itemDTO;
+            }
             sale.addItem(itemDTO);
-            
         }
         catch(ItemNotFoundException ine){
-            System.out.println("Developer log message: " + ine.getMessage());
             String message = Integer.toString(ine.getItemNotFound());
             throw new IllegalArgumentException(message);
         }
         catch(DatabaseConnectionException dce){
             System.out.println("Developer log message: " + dce.getMessage());
-            throw new RuntimeException();
+            dce.printStackTrace();
+            throw new OperationFailedException();
         }
         return itemDTO;
     } 

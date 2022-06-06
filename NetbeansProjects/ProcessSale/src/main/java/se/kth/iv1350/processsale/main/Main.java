@@ -21,6 +21,6 @@ public class Main {
         View view = new View(contr);
         
         view.runFakeSale();
-        view.runFakeSale();
+        //view.runFakeSale();
     }
 }

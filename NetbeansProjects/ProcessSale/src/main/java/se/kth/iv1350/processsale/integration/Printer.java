@@ -15,13 +15,14 @@ public class Printer {
      */
     public void printReceipt(SaleInformationDTO saleInformationDTO){
         System.out.println("Receipt: ");
-        printNameAndPriceOfItems(saleInformationDTO);
+        printNamePriceAndQuantityOfItems(saleInformationDTO);
         printTotalPriceAndTax(saleInformationDTO);
         System.out.println("Time of sale: " + saleInformationDTO.getTimeOfSale());
     }
-    private void printNameAndPriceOfItems(SaleInformationDTO saleInformationDTO){
+    private void printNamePriceAndQuantityOfItems(SaleInformationDTO saleInformationDTO){
         int i = 0;
         while(itemExists(saleInformationDTO.getItemDTOArray()[i])){
+            System.out.print(saleInformationDTO.getItemDTOArray()[i].getQuantity() + " ");
             System.out.print(saleInformationDTO.getItemDTOArray()[i].getItemName()+ " ");
             System.out.println(saleInformationDTO.getItemDTOArray()[i].getPrice());
             i++;

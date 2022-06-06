@@ -15,15 +15,13 @@ public class DatabaseConnectionExceptionTest {
     CashRegister register;
     String expectedMessage = "Can't access database.";
     int identifierProducingDatabaseException = 9;
-    int identifierNotProducingDatabaseException = 8;
+    int identifierNotProducingDatabaseException = 2;
     
     @BeforeEach
     public void setUp() {
         register = new CashRegister();
         dbhandler = new DbHandler(register);
-        inventoryAndAccountingSystems = new ItemDTO[5];
-        for(int i = 0; i < 5; i++)
-            this.inventoryAndAccountingSystems[i] = new ItemDTO(i);
+        dbhandler.initializeFakeDatabases();
     }
     
     @AfterEach
@@ -43,6 +41,7 @@ public class DatabaseConnectionExceptionTest {
             assertTrue(true, "Expected exception was not thrown.");
         }
         catch(Exception e){
+            fail();
         }
     }
 
@@ -57,6 +56,7 @@ public class DatabaseConnectionExceptionTest {
                     "DatabaseConnectionException did not contain expected error message");
         }
         catch(Exception e){
+            fail("This identifier should not produce an exception.");
         }
     }
     @Test
@@ -68,6 +68,7 @@ public class DatabaseConnectionExceptionTest {
             fail("This identifier should not produce an exception.");
         }
         catch(Exception e){
+            fail(e.getMessage());
         }
     }
     

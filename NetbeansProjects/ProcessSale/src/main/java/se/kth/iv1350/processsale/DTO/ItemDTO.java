@@ -8,9 +8,12 @@ public final class ItemDTO {
     private static final double TAX_RATE = 0.25;
     private static final String NAME = "itemName"; 
     private final int price;
+    private final int quantity;
     private final String itemDescription = "Description of item.";
     private final int PRICE_MULTIPLIER = 100;
     private final int MINIMUM_PRICE_OF_ITEM = 20;
+    private final int DEFAULT_QUANTITY = 1;
+    
     /**
      * Creates an instance of the class from the item's identifying code.
      * @param itemIdentifier The identifying code for the specific item. 
@@ -18,6 +21,7 @@ public final class ItemDTO {
     public ItemDTO(int itemIdentifier){
         this.itemIdentifier = itemIdentifier;
         this.price = (itemIdentifier * PRICE_MULTIPLIER) + MINIMUM_PRICE_OF_ITEM;
+        this.quantity = DEFAULT_QUANTITY;
     }
     /**
      * Constructor which takes an itemDTO object and creates a copy of it.
@@ -26,6 +30,17 @@ public final class ItemDTO {
     public ItemDTO(ItemDTO itemDTOToCopy){
         this.itemIdentifier = itemDTOToCopy.getItemIdentifier();
         this.price = itemDTOToCopy.getPrice();
+        this.quantity = DEFAULT_QUANTITY;
+    }
+    /**
+     * Constructor which copies an itemDTO and adds to its' quantity.
+     * @param itemDTO The itemDTO to be copied.
+     * @param quantity The number of items to be added.
+     */
+    public ItemDTO (ItemDTO itemDTO, int quantity){
+        this.itemIdentifier = itemDTO.getItemIdentifier();
+        this.price = itemDTO.getPrice();
+        this.quantity = itemDTO.getQuantity() + quantity;
     }
     /**
      * Returns the item identifier for the item this object contains data of.
@@ -60,5 +75,12 @@ public final class ItemDTO {
      */
     public String getItemDescription(){
         return this.itemDescription;
+    }
+    /**
+     * Returns the number of this item in the current sale.
+     * @return The quantity of the current item.
+     */
+    public int getQuantity(){
+        return this.quantity;
     }
 }
