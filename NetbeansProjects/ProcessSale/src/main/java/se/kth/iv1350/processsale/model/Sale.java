@@ -28,7 +28,8 @@ public class Sale {
         return saleTime;
     }
     /**
-     * Registers item as scanned and to be purchased by the customer.
+     * Registers item as scanned and to be purchased by the customer. 
+     * Calculates total price and tax.
      * @param itemDTO Registered item.
      */
     public void addItem(ItemDTO itemDTO){

@@ -24,7 +24,8 @@ public class Printer {
         while(itemExists(saleInformationDTO.getItemDTOArray()[i])){
             System.out.print(saleInformationDTO.getItemDTOArray()[i].getQuantity() + " ");
             System.out.print(saleInformationDTO.getItemDTOArray()[i].getItemName()+ " ");
-            System.out.println(saleInformationDTO.getItemDTOArray()[i].getPrice());
+            System.out.println(saleInformationDTO.getItemDTOArray()[i].getPrice() 
+                    * saleInformationDTO.getItemDTOArray()[i].getQuantity());
             i++;
         }
     }

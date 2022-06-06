@@ -18,7 +18,7 @@ public class View {
     */
     public  View (Controller contr){
         this.contr = contr;
-        contr.addRegisterObserver(new TotalRevenueView());
+        //contr.addRegisterObserver(new TotalRevenueView());
     }
     /**
      * Runs through a fake sale.
@@ -27,14 +27,13 @@ public class View {
         contr.startSale();
         System.out.println("A fake sale has started.");
         fakeScanOfItems();
-        System.out.println("Four items have been scanned and their info printed.");
         showAmountToBePaid();
         contr.registerAmountPaid(AMOUNT_PAID_BY_CUSTOMER);
         contr.endSale();
         showChangeToReturn();
     }
     private void fakeScanOfItems(){
-        for(int i=0; i<3; i++)
+        for(int i=1; i<3; i++)
             scanItem(i);
         scanItem(2);
         //scanItem(6);
