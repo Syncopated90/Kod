@@ -142,7 +142,6 @@ void gameinit( void )
 /* This function is called repetitively from the main program */
 void game()
 {
-  //while(1){
   start_screen();
 	while(1){
 	  if (game_over == 1)

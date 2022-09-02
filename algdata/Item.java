@@ -1,12 +1,4 @@
 public class Item{
-	/*enum ItemType {
-		ADD,
-		SUB,
-		MUL,
-		DIV,
-		VALUE
-	};*/
-
 	private ItemType type;
 	private int value = 0;
 

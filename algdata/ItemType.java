@@ -3,5 +3,7 @@ public enum ItemType {
 	SUB,
 	MUL,
 	DIV,
-	VALUE;
+	VALUE,
+	PNUMBER,
+	MODULO10;
 }

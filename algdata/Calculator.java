@@ -46,6 +46,17 @@ public class Calculator{
 				stack.push(nxt.getValue());
 				break;
 			}
+			case PNUMBER: {
+				int x = stack.pop() * 2;
+				if(x >= 10)
+					x = x - 9;
+				stack.push(x);
+				break;
+			}
+			case MODULO10: {
+				stack.push(stack.pop() % 10);
+				break;
+			}
 		}
 	}
 }

@@ -5,3 +5,8 @@
  clean = git-lfs clean -- %f
  smudge = git-lfs smudge -- %f
  process = git-lfs filter-process
+/Netbeans/seminarie3/target/
+/Netbeans/ProcessSale/target/
+/Netbeans/ProcessSale/nbproject/
+/NetbeansProjects/ProcessSale/nbproject/
+/NetbeansProjects/ProcessSale/target/
