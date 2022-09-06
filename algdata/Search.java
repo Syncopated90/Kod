@@ -1,6 +1,7 @@
 import java.util.Random;
 class Search{
-	public static void main(String[] args){int k = 5000; //m är antalet nycklar, n är storleken på arrayen och k är antalet varv som nya arrayer
+	public static void main(String[] args){
+		int k = 5000; //m är antalet nycklar, n är storleken på arrayen och k är antalet varv som nya arrayer
 		int m = 10;//och nycklar slumpas fram och sökningen görs. m måste vara mindre än n.
 		int n = 1000;
 		long t_total = 0;
