@@ -1,0 +1,14 @@
+Minimum search time for n = 100: 39.201
+Minimum search time for n = 100: 33.3 with a sorted algorithm
+Minimum search time for n = 200: 82.699
+Minimum search time for n = 200: 76.899 with a sorted algorithm
+Minimum search time for n = 400: 143.7
+Minimum search time for n = 400: 136.0 with a sorted algorithm
+Minimum search time for n = 800: 265.099
+Minimum search time for n = 800: 248.399 with a sorted algorithm
+Minimum search time for n = 1600: 541.7
+Minimum search time for n = 1600: 500.8 with a sorted algorithm
+Minimum search time for n = 3200: 1031.799
+Minimum search time for n = 3200: 686.3 with a sorted algorithm
+Minimum search time for n = 6400: 1405.201
+Minimum search time for n = 6400: 1423.6 with a sorted algorithm

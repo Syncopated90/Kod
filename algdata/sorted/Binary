@@ -1,0 +1,35 @@
+import java.util.Random;
+
+class Binary{
+  private static boolean searchBinary(int[] array, int key){
+  int first = 0;
+  int last = array.length-1;
+  ID1021 KTH 2 / 4
+  while (true) {
+  	// jump to the middle
+  int index = ....... ;
+  if (array[index] == key) {
+  // hmm what now?
+  :
+  }
+  if (array[index] < key && index < last) {
+  // The index position holds something that is less than
+  // what we
+  re looking for, what is the first possible page?
+  first = ...... ;
+  continue;
+  }
+  if (array[index] > key && index > first) {
+  // The index position holds something that is larger than
+  // what we
+  re looking for, what is the last possible page?
+  last = ...... ;
+  continue;
+  }
+  // Why do we land here? What shoudl we do?
+  :
+  }
+  return false;
+  }
+  }*/
+}
