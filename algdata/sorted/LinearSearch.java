@@ -3,7 +3,7 @@ class LinearSearch{
 	public void Benchmark(){
 		Random random = new Random();
 		int n = 100;
-		int loop = 5000;
+		int loop = 2000;
 		int[] array;
 		int[] keys;
 		long searchTime = 0;
@@ -51,7 +51,7 @@ class LinearSearch{
 			n *= 2;
 		}
 	}
-	public static boolean searchBinary(int[] array, int key){
+	/*public static boolean searchBinary(int[] array, int key){
     int first = 0;
     int last = array.length-1;
     while (first <= last) {
@@ -71,7 +71,7 @@ class LinearSearch{
       break;
     }
     return false;
-  }
+  }*/
 	public static boolean search_unsorted(int[] array, int key) {
 		for (int i = 0; i < array.length; i++) {
 			if (array[i] == key)
