@@ -3,11 +3,11 @@ import java.util.Random;
 class Binary{
   public static boolean searchBinary(int[] array, int key){
     int first = 0;
-    int last = array.length-1;
-    while (true) {
-      int mid = array.length / 2;
-      if(first == last && array[first] != key)
-        return false;
+    int last = array.length - 1;
+    while (first <= last) {
+      int mid = first + ((last - first)/2);
+      if(first == last)
+        mid = first;
       if (array[mid] == key)
         return true;
       if (array[mid] < key && mid < last) {
@@ -18,7 +18,8 @@ class Binary{
         last = mid - 1;
         continue;
       }
-      return false;
+      break;
     }
+    return false;
   }
 }

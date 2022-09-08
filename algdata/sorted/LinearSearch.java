@@ -3,13 +3,14 @@ class LinearSearch{
 	public void Benchmark(){
 		Random random = new Random();
 		int n = 100;
-		int loop = 2000;
+		int loop = 5000;
 		int[] array;
 		int[] keys;
 		long searchTime = 0;
 		double t0, t1;
 		boolean dummy;
 		double min = Double.POSITIVE_INFINITY;
+		Binary binary = new Binary();
 
 		while(n < 12800){
 			array = fillSorted(n);
@@ -36,10 +37,41 @@ class LinearSearch{
 					min = temp;
 			}
 			System.out.println("Minimum search time for n = " + n + ": " + min/1000 + " with a sorted algorithm");
+			for(int i = 0; i < loop; i++){
+				min = Double.POSITIVE_INFINITY;
+				t0 = System.nanoTime();
+				for(int j = 0; j < keys.length; j++)
+					dummy = binary.searchBinary(array, keys[j]);
+				t1 = System.nanoTime();
+				double temp = (t1 - t0);
+				if(temp < min)
+					min = temp;
+			}
+			System.out.println("Minimum search time for n = " + n + ": " + min/1000 + " with a binary algorithm");
 			n *= 2;
 		}
 	}
-
+	public static boolean searchBinary(int[] array, int key){
+    int first = 0;
+    int last = array.length-1;
+    while (first <= last) {
+      int mid = array.length / 2;
+      if(first == last)
+        mid = first;
+      else if (array[mid] == key)
+        return true;
+      else if (array[mid] < key && mid < last) {
+        first = mid + 1;
+        continue;
+      }
+      else if (array[mid] > key && mid > first) {
+        last = mid - 1;
+        continue;
+      }
+      break;
+    }
+    return false;
+  }
 	public static boolean search_unsorted(int[] array, int key) {
 		for (int i = 0; i < array.length; i++) {
 			if (array[i] == key)
