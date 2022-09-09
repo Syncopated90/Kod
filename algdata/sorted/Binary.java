@@ -6,8 +6,8 @@ class Binary{
     int last = array.length - 1;
     while (first <= last) {
       int mid = first + ((last - first)/2);
-      if(first == last)
-        mid = first;
+      /*if(first == last)
+        mid = first;*/
       if (array[mid] == key)
         return true;
       if (array[mid] < key && mid < last) {

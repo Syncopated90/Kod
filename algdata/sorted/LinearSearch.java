@@ -2,8 +2,8 @@ import java.util.Random;
 class LinearSearch{
 	public void Benchmark(){
 		Random random = new Random();
-		int n = 100;
-		int loop = 2000;
+		int n = 200;
+		int loop = 1000;
 		int[] array;
 		int[] keys;
 		long searchTime = 0;
@@ -11,8 +11,8 @@ class LinearSearch{
 		boolean dummy;
 		double min = Double.POSITIVE_INFINITY;
 		Binary binary = new Binary();
-
-		while(n < 12800){
+		Compare compare = new Compare();
+		while(n < 120000){
 			array = fillSorted(n);
 			keys = fillKeys(loop, n);
 
@@ -48,30 +48,22 @@ class LinearSearch{
 					min = temp;
 			}
 			System.out.println("Minimum search time for n = " + n + ": " + min/1000 + " with a binary algorithm");
+			int dummyInt = 0;
+			for(int i = 0; i < loop; i++){
+				min = Double.POSITIVE_INFINITY;
+				t0 = System.nanoTime();
+				dummyInt = compare.compare(array, keys);
+				t1 = System.nanoTime();
+				double temp = (t1 - t0);
+				if(temp < min)
+					min = temp;
+			}
+			System.out.println("Minimum search time for n = " + n + ": " + min/1000 + " with the best algorithm");
+
 			n *= 2;
 		}
 	}
-	/*public static boolean searchBinary(int[] array, int key){
-    int first = 0;
-    int last = array.length-1;
-    while (first <= last) {
-      int mid = array.length / 2;
-      if(first == last)
-        mid = first;
-      else if (array[mid] == key)
-        return true;
-      else if (array[mid] < key && mid < last) {
-        first = mid + 1;
-        continue;
-      }
-      else if (array[mid] > key && mid > first) {
-        last = mid - 1;
-        continue;
-      }
-      break;
-    }
-    return false;
-  }*/
+
 	public static boolean search_unsorted(int[] array, int key) {
 		for (int i = 0; i < array.length; i++) {
 			if (array[i] == key)
@@ -88,7 +80,7 @@ class LinearSearch{
 		}
 		return false;
 	}
-	private static int[] fillSorted(int n) {
+	public static int[] fillSorted(int n) {
 		Random rnd = new Random();
 		int[] array = new int[n];
 		int nxt = 0;
