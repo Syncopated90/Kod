@@ -2,7 +2,7 @@ import java.util.Random;
 class LinearSearch{
 	public void Benchmark(){
 		Random random = new Random();
-		int n = 200;
+		int n = 64000000;
 		int loop = 1000;
 		int[] array;
 		int[] keys;
@@ -12,11 +12,11 @@ class LinearSearch{
 		double min = Double.POSITIVE_INFINITY;
 		Binary binary = new Binary();
 		Compare compare = new Compare();
-		while(n < 120000){
+		while(n < 65000000){
 			array = fillSorted(n);
 			keys = fillKeys(loop, n);
 
-			for(int i = 0; i < loop; i++){
+			/*for(int i = 0; i < loop; i++){
 				min = Double.POSITIVE_INFINITY;
 				t0 = System.nanoTime();
 				for(int j = 0; j < keys.length; j++)
@@ -37,7 +37,7 @@ class LinearSearch{
 					min = temp;
 			}
 			System.out.println("Minimum search time for n = " + n + ": " + min/1000 + " with a sorted algorithm");
-			for(int i = 0; i < loop; i++){
+			*/for(int i = 0; i < loop; i++){
 				min = Double.POSITIVE_INFINITY;
 				t0 = System.nanoTime();
 				for(int j = 0; j < keys.length; j++)
@@ -48,7 +48,7 @@ class LinearSearch{
 					min = temp;
 			}
 			System.out.println("Minimum search time for n = " + n + ": " + min/1000 + " with a binary algorithm");
-			int dummyInt = 0;
+		/*	int dummyInt = 0;
 			for(int i = 0; i < loop; i++){
 				min = Double.POSITIVE_INFINITY;
 				t0 = System.nanoTime();
@@ -59,7 +59,7 @@ class LinearSearch{
 					min = temp;
 			}
 			System.out.println("Minimum search time for n = " + n + ": " + min/1000 + " with the best algorithm");
-
+*/
 			n *= 2;
 		}
 	}

@@ -35,7 +35,7 @@ class Compare{
     double min = 0;
     LinearSearch linear = new LinearSearch();
 
-    while(n < 135000){
+    while(n < 513000){
       int[] array1 = linear.fillSorted(n);
       int[] array2 = linear.fillSorted(n);
       for(int i = 0; i < loop; i++){
@@ -47,8 +47,8 @@ class Compare{
         if(min > (temp))
           min = (temp);
       }
-      System.out.println("Minimum search time for n = " + n + ": "+ min + " using a good algo");
-      /*for(int i = 0; i < loop; i++){
+      System.out.println("Minimum search time for n = " + n + ": "+ min/1000 + " using a good algo");
+    /*  for(int i = 0; i < loop; i++){
         min = Double.POSITIVE_INFINITY;
         t0 = System.nanoTime();
         linearCompare(array1, array2);
@@ -57,7 +57,7 @@ class Compare{
         if(min > (temp))
           min = (temp);
       }
-      System.out.println("Minimum search time for n = " + n + ": "+ min + " using a bad algo");
+      System.out.println("Minimum search time for n = " + n + ": "+ min/1000 + " using a bad algo");
     */  n *= 2;
     }
   }
