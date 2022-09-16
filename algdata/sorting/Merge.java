@@ -2,7 +2,7 @@ class Merge{
   public static void sort(int[] array1) {
     if (array1.length == 0)
       return;
-    int[] array2 = new int[array1.length];
+    int[] array2 = array1.clone();
     sort(array1, array2, 0, array1.length -1);
     return;
   }
@@ -15,19 +15,16 @@ class Merge{
     }
   }
   private static void merge(int[] array1, int[] array2, int lo, int mid, int hi) {
-    for (int i = lo; i <= hi; i++) {
-      array2[i] = array1[i];
-    }
-    int i = lo; // the index in the first part
-    int j = mid+1; // the index in the second part
+    int i = lo;
+    int j = mid+1;
     for (int k = lo; k <= hi; k++) {
-      if(i > mid) // if i is greater than mid, move the j item to the array1 array, update j
+      if(i > mid)
         array1[k] = array2[j++];
-      else if(j > hi)// else if j is greate than hi, move the i item to the array1 array, update i
+      else if(j > hi)
         array1[k] = array2[i++];
-      else if(array2[i] < array2[j])// else if the i item is smaller than the j item, move it to the array1 array, update i
+      else if(array2[i] < array2[j])
         array1[k] = array2[i++];
-      else// else you can move the j item to the array1 array, update j
+      else
         array1[k] = array2[j++];
     }
   }
