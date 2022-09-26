@@ -6,11 +6,35 @@ public class LinkedList{
     this.head = item;
     this.tail = list;
   }
-  public void append(LinkedList list2){
+
+  public LinkedList remove(int index){
+    LinkedList list = this;
+    int current = 0;
+    while(current++ < index-1 && list.getTail() != null)
+      list = list.getTail();
+    if(list.getTail().getTail() == null){
+      list.getTail().setTail(null);
+      return this;
+    }
+    list.setTail(list.getTail().getTail());
+    return this;
+  }
+
+  public LinkedList add(LinkedList newList){
+    newList.setTail(this);
+    return newList;
+  }
+  public void append(LinkedList tail){
     LinkedList next = this;
     while(next.getTail() != null)
       next = next.getTail();
-    next.setTail(list2);
+    next.setTail(tail);
+  }
+  public static LinkedList createList(int headStart, int listNumber){
+    LinkedList list = new LinkedList(listNumber, null);
+    for( int i = listNumber - 1; i >= headStart; i--)
+      list = new LinkedList(i, list);
+    return list;
   }
   public void push(int value){
     LinkedList list = new LinkedList(this.getHead(), this.getTail());

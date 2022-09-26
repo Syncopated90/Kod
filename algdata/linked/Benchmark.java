@@ -1,5 +1,50 @@
 import java.util.Random;
 class Benchmark{
+  public void doubleBench(){
+    int n = 250;
+    int tries = 5;
+
+    while(n < 64000){
+      int nKeys = n/10;
+      LinkedList list = LinkedList.createList(0, n);
+      DoubleList doubleList = DoubleList.createList(0, n);
+      int[] indexes = randomArray(n, nKeys);
+      double min = Double.POSITIVE_INFINITY;
+      for(int i = 0; i < tries;i++){
+        double t0 = System.nanoTime();
+        for(int j = 0; j < nKeys; j++){
+          doubleList = doubleList.remove(indexes[j]);
+          doubleList = doubleList.add(new DoubleList(indexes[j], null));
+        }
+        double t1 = System.nanoTime();
+        if((t1 - t0) < min)
+          min = (t1 - t0);
+      }
+      System.out.println((min/1000) + " us for n = " + n + " for a double linked list");
+
+      min = Double.POSITIVE_INFINITY;
+      for(int i = 0; i < tries;i++){
+        double t0 = System.nanoTime();
+        for(int j = 0; j < nKeys; j++){
+          list = list.remove(indexes[j]);
+          list = list.add(new LinkedList(indexes[j], null));
+        }
+        double t1 = System.nanoTime();
+        if((t1 - t0) < min)
+          min = (t1 - t0);
+      }
+      System.out.println((min/1000) + " us for n = " + n + " for a single linked list");
+      n *= 2;
+    }
+  }
+  private int[] randomArray(int n, int size){
+    Random random = new Random();
+    int[] sequence = new int[size];
+    for(int i = 0; i < size; i++)
+      sequence[i] = random.nextInt(n);
+    return sequence;
+
+  }
   public void benchmarkArrayStaticB(){
     int n = 200000;
     int b = 100;
@@ -72,10 +117,10 @@ class Benchmark{
       long t0, t1;
       double min = Double.POSITIVE_INFINITY;
       for(int i = 0; i < tries;i++){
-        listA = createList(0, n);
+        listA = LinkedList.createList(0, n);
         t0 = System.nanoTime();
         for(int j = 0; j < loop; j++){
-          listA.append(createList(0, 50));
+          listA.append(LinkedList.createList(0, 50));
         }
         t1 = System.nanoTime();
         if((t1 - t0) < min)
@@ -94,8 +139,8 @@ class Benchmark{
     while(n < 1024000){
       double min = Double.POSITIVE_INFINITY;
       for(int i = 0; i < tries;i++){
-        listB = createList(0, n);
-        listA = createList(0, 100);
+        listB = LinkedList.createList(0, n);
+        listA = LinkedList.createList(0, 100);
         t0 = System.nanoTime();
         listA.append(listB);
         t1 = System.nanoTime();
@@ -119,7 +164,7 @@ class Benchmark{
       /*for(int i = 0; i < tries;i++){
         t0 = System.nanoTime();
         for(int j = 0; j < loop;j++)
-          list = createList(0, n);
+          list = LinkedList.createList(0, n);
         t1 = System.nanoTime();
         if((t1 - t0) < min)
           min = (t1 - t0);
@@ -141,12 +186,14 @@ class Benchmark{
     }
   }
 
-  public LinkedList createList (int headStart, int listNumber){
+  public LinkedList oldCreate (int headStart, int listNumber){
     LinkedList list = new LinkedList(headStart, null);
     for(int i = headStart + 1; i < listNumber; i++)
       list.append(new LinkedList(i, null));
     return list;
   }
+
+
 
   private long setDummy(int n, int loop, int tries){
     LinkedList listB;
@@ -155,8 +202,8 @@ class Benchmark{
     for(int i = 0; i < tries; i++){
       t0 = System.nanoTime();
       for(int j = 0; j < loop; j++){
-        listB = createList(0, n);
-        listB = createList(0, 100);
+        listB = LinkedList.createList(0, n);
+        listB = LinkedList.createList(0, 100);
       }
       t1 = System.nanoTime();
       dummy = t1 - t0;
