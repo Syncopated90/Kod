@@ -1,15 +1,19 @@
-class BinaryTree{
-  private Node root;
+import java.util.Iterator;
+class BinaryTree implements Iterable<Integer>{
+  public Node root;
   public BinaryTree(Integer key, Integer value){
     this.root = new Node(key,value);
   }
   public BinaryTree(){
     this.root = null;
   }
+  public Iterator<Integer> iterator(){
+    return new TreeIterator(this);
+  }
   public class Node{
-    private Integer key;
-    private Integer value;
-    private Node left, right;
+    public Integer key;
+    public Integer value;
+    public Node left, right;
 
     public Node(Integer key, Integer value){
       this.key = key;
@@ -32,6 +36,7 @@ class BinaryTree{
       sb.append(this.valuesToString());
       if(this.right != null)
         sb.append(this.right.toString());
+
       return sb.toString();
     }
     private Integer lookup(Integer searchKey){
