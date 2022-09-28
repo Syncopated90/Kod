@@ -1,39 +1,51 @@
 import java.util.Random;
 class Benchmark{
   public void doubleBench(){
-    int n = 250;
-    int tries = 5;
+    int n = 125;
+    int tries = 10;
+    int loop = 100;
 
-    while(n < 64000){
-      int nKeys = n/10;
+    while(n < 4096000){
+      int nKeys = 1000;
+      int[] indexes = randomArray(n, nKeys);
       LinkedList list = LinkedList.createList(0, n);
       DoubleList doubleList = DoubleList.createList(0, n);
-      int[] indexes = randomArray(n, nKeys);
+      DoubleList[] pointers = new DoubleList[n];
+      DoubleList p = doubleList;
+      int index = 0;
+      while(index < n){
+        pointers[index++] = p;
+        p = p.getTail();
+      }
       double min = Double.POSITIVE_INFINITY;
       for(int i = 0; i < tries;i++){
         double t0 = System.nanoTime();
-        for(int j = 0; j < nKeys; j++){
-          doubleList = doubleList.remove(indexes[j]);
-          doubleList = doubleList.add(new DoubleList(indexes[j], null));
+        for(int k = 0; k < loop; k++){
+          for(int j = 0; j < nKeys; j++){
+            doubleList = doubleList.remove(pointers[indexes[j]]);
+            doubleList = doubleList.add(pointers[indexes[j]]);
+          }
         }
         double t1 = System.nanoTime();
         if((t1 - t0) < min)
           min = (t1 - t0);
       }
-      System.out.println((min/1000) + " us for n = " + n + " for a double linked list");
+      System.out.println((min/1000)/loop + " us for n = " + n + " for a double linked list");
 
       min = Double.POSITIVE_INFINITY;
       for(int i = 0; i < tries;i++){
         double t0 = System.nanoTime();
-        for(int j = 0; j < nKeys; j++){
-          list = list.remove(indexes[j]);
-          list = list.add(new LinkedList(indexes[j], null));
+        for(int k = 0; k < loop; k++){
+          for(int j = 0; j < nKeys; j++){
+            list = list.remove(indexes[j]);
+            list = list.add(new LinkedList(indexes[j], null));
+          }
         }
         double t1 = System.nanoTime();
         if((t1 - t0) < min)
           min = (t1 - t0);
       }
-      System.out.println((min/1000) + " us for n = " + n + " for a single linked list");
+      System.out.println((min/1000)/loop + " us for n = " + n + " for a single linked list");
       n *= 2;
     }
   }

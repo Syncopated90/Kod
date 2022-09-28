@@ -23,29 +23,25 @@ class DoubleList{
     return list;
   }
 
-  public DoubleList remove(int index){
-    DoubleList list = this;
-    int current = 0;
-    if(index == 0){
+  public DoubleList remove(DoubleList list){
+    if(list.getPrev() == null){
       list.getTail().setPrev(null);
       list = list.getTail();
       return list;
     }
-    while(current < index && list.getTail() != null){
-      list = list.getTail();
-      current++;
-    }
-    if(list.getTail() == null){
+    else if(list.getTail() == null){
       list.getPrev().setTail(null);
       return this;
-    }
+    }else{
     list.getTail().setPrev(list.getPrev());
     list.getPrev().setTail(list.getTail());
+    }
     return this;
   }
 
   public DoubleList add(DoubleList newList){
     newList.setTail(this);
+    newList.setPrev(null);
     this.setPrev(newList);
     return newList;
   }
