@@ -14,7 +14,8 @@ class Trees{
     binTree.add(14,28);
     //System.out.println(binTree.toString());
     //System.out.println(binTree.lookup(Integer.parseInt(args[0])));
-    for(Integer i:binTree)
+    for(Integer i:binTree){
       System.out.println(i.toString());
+    }
   }
 }

@@ -6,38 +6,35 @@ public class TreeIterator implements Iterator<Integer>{
   public TreeIterator(BinaryTree tree){
     this.stack = new Stack(tree.root, null);
     this.next = tree.root.left;
-    while(this.next != null){
-      traverse();
+    while(next.left != null){
+      stack = stack.push(next);
+      next = next.left;
     }
-  }
-  public void traverse(){
-    System.out.println(next().toString());
-    while(!hasRight()){
-      this.next = stack.pop();
-    }
-    this.next = next.right;
-    return;
-  }
-  public boolean hasRight(){
-    if(next.right != null)
-      return true;
-    else
-      return false;
   }
   @Override
   public boolean hasNext(){
-    if(next.left != null)
-      return true;
-    else
-      return false;
+    return next != null;
   }
   @Override
   public Integer next(){
-    while(hasNext()){
-      stack.push(this.next);
-      this.next = next.left;
+    if(next.right != null){
+      next = next.right;
+      while(next.left != null)
+        next = next.left;
+      return next.value;
     }
-    return this.next.value;
+    while(true){
+      BinaryTree.Node parent = stack.pop();
+      if( parent == null){
+        next = null;
+        return null;
+      }
+      if(parent.left == next){
+        next = parent;
+        return next.value;
+      }
+      next = parent;
+    }
   }
   @Override
   public void remove(){
