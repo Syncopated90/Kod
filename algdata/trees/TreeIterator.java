@@ -17,23 +17,27 @@ public class TreeIterator implements Iterator<Integer>{
   }
   @Override
   public Integer next(){
+    BinaryTree.Node node = next;
     if(next.right != null){
       next = next.right;
-      while(next.left != null)
+      while(next.left != null){
+        stack = stack.push(next);
         next = next.left;
-      return next.value;
+      }
+      return node.value;
     }
     while(true){
       BinaryTree.Node parent = stack.pop();
-      if( parent == null){
+      if(parent == null){
         next = null;
-        return null;
+        return node.value;
       }
-      if(parent.left == next){
+      if(parent.left.key == next.key){
         next = parent;
-        return next.value;
+        return node.value;
       }
       next = parent;
+      return node.value;
     }
   }
   @Override

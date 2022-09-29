@@ -7,7 +7,8 @@ class Stack<Node>{
     this.tail = tail;
   }
   public Stack push(BinaryTree.Node node){
-    this.tail = this;
+    Stack stack = new Stack(this.head, this.tail);
+    this.tail = stack;
     this.head = node;
     return this;
   }

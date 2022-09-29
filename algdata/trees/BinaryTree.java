@@ -36,7 +36,6 @@ class BinaryTree implements Iterable<Integer>{
       sb.append(this.valuesToString());
       if(this.right != null)
         sb.append(this.right.toString());
-
       return sb.toString();
     }
     private Integer lookup(Integer searchKey){
