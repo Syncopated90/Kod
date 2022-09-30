@@ -8,7 +8,7 @@ public class TreeIterator implements Iterator<Integer>{
     this.next = tree.root.left;
     while(next.left != null){
       stack = stack.push(next);
-      next = next.left;
+      this.next = next.left;
     }
   }
   @Override
@@ -17,26 +17,26 @@ public class TreeIterator implements Iterator<Integer>{
   }
   @Override
   public Integer next(){
-    BinaryTree.Node node = next;
+    BinaryTree.Node node = this.next;
     if(next.right != null){
-      next = next.right;
+      this.next = next.right;
       while(next.left != null){
         stack = stack.push(next);
-        next = next.left;
+        this.next = next.left;
       }
       return node.value;
     }
     while(true){
       BinaryTree.Node parent = stack.pop();
       if(parent == null){
-        next = null;
+        this.next = null;
         return node.value;
       }
       if(parent.left.key == next.key){
-        next = parent;
+        this.next = parent;
         return node.value;
       }
-      next = parent;
+      this.next = parent;
       return node.value;
     }
   }

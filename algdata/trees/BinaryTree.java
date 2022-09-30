@@ -1,4 +1,5 @@
 import java.util.Iterator;
+import java.util.Random;
 class BinaryTree implements Iterable<Integer>{
   public Node root;
   public BinaryTree(Integer key, Integer value){
@@ -46,7 +47,7 @@ class BinaryTree implements Iterable<Integer>{
       else if(this.right != null && searchKey > this.key)
         return this.right.lookup(searchKey);
       else
-        return null;
+        return 0;
     }
     private void add(Integer key, Integer value){
       if(key == this.key)
@@ -88,5 +89,12 @@ class BinaryTree implements Iterable<Integer>{
     if(this.root.right != null)
     sb.append(this.root.right.toString());
     return sb.toString();
+  }
+  public void fillTree(int n){
+    Random random = new Random();
+    for(int i = 0; i < n; i++){
+      int rnd = random.nextInt(10 * n);
+      this.add(rnd, 2 * rnd);
+    }
   }
 }
