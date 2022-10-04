@@ -1,6 +1,6 @@
 class Queue{
   public static void main(String[] args){
-    BinaryTree binTree = new BinaryTree(10,20);
+    /*BinaryTree binTree = new BinaryTree(10,20);
     System.out.println("binTree was created: " + binTree.toString());
     binTree.add(2,4);
     binTree.add(7,14);
@@ -12,8 +12,13 @@ class Queue{
     binTree.add(6, 12);
     //System.out.println(binTree.toString());
     for(BinaryTree.Node i:binTree)
-      System.out.println(i.value);
-
+      System.out.println(i.value);*/
+    ArrayQ q = new ArrayQ(0);
+    for(int i = 1; i < 5; i++)
+      q.add(i);
+    System.out.println(q.toString());
+    q.add(5);
+    System.out.println(q.toString());
     /*LinkedQ q = new LinkedQ(8);
     System.out.println(q.toString());
     q.add(7);
