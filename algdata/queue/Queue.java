@@ -8,7 +8,7 @@ class Queue{
     binTree.add(8,16);
     binTree.add(15,30);
     binTree.add(13,26);
-    binTree.add(14,28);
+    binTree.add(16,32);
     binTree.add(6, 12);
     //System.out.println(binTree.toString());
     for(BinaryTree.Node i:binTree)
@@ -31,12 +31,10 @@ class Queue{
     a = (Integer) q.remove();
     System.out.println(q.toString());
     System.out.println("removed: " + a);
-    a = (Integer) q.remove();
-    System.out.println("removed: " + a);
-    a = (Integer) q.remove();
-    System.out.println("removed: " + a);
+    q.add(2);
     System.out.println(q.toString());
-    q.add(1);
-    System.out.println(q.toString());*/
+    a = (Integer) q.remove();
+    System.out.println(q.toString());
+    System.out.println("removed: " + a);*/
   }
 }

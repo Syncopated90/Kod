@@ -1,11 +1,9 @@
 import java.util.Iterator;
 public class TreeIterator implements Iterator<BinaryTree.Node>{
-  private BinaryTree.Node next;
   private LinkedQ q;
 
   public TreeIterator(BinaryTree tree){
     this.q = new LinkedQ(tree.root);
-    this.next = tree.root;
   }
   @Override
   public boolean hasNext(){
@@ -13,11 +11,9 @@ public class TreeIterator implements Iterator<BinaryTree.Node>{
   }
   @Override
   public BinaryTree.Node next(){
-    this.next = (BinaryTree.Node) q.remove();
-    if(this.next != null){
-      q.add(this.next.left);
-      q.add(this.next.right);
-    }
+    BinaryTree.Node next = (BinaryTree.Node) q.remove();
+    q.add(next.left);
+    q.add(next.right);
     return next;
   }
   /*public Integer next(){
