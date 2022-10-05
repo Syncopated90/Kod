@@ -8,6 +8,9 @@ class ArrayQ<T>{
     this.first = 0;
     this.last = 1;
   }
+  public int getLength(){
+    return this.array.length;
+  }
   public void add(T item){
     if(item == null)
       return;
@@ -49,10 +52,10 @@ class ArrayQ<T>{
   public boolean empty(){
     return this.array[first] == null;
   }
-  public String toString(){
+  /*public String toString(){
     StringBuilder sb = new StringBuilder();
-    if(array[first] == null)
-      return null;
+    if(array[this.first] == null)
+      return "";
     else if(this.first <= this.last){
       int i = this.first;
       while(i < this.last)
@@ -62,6 +65,17 @@ class ArrayQ<T>{
       int j = this.last - 1;
       while(j++ < first)
         sb.append(array[j++] + " ");
+    }
+    return sb.toString();
+  }*/
+  public String toString(){
+    StringBuilder sb = new StringBuilder();
+    for(int i = 0; i < this.array.length; i++){
+      if(this.array[i] == null){
+        sb.append(" ");
+        continue;
+      }
+      sb.append(this.array[i] + " ");
     }
     return sb.toString();
   }

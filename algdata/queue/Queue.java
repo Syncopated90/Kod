@@ -1,6 +1,6 @@
 class Queue{
   public static void main(String[] args){
-    BinaryTree binTree = new BinaryTree(10,20);
+    /*BinaryTree binTree = new BinaryTree(10,20);
     System.out.println("binTree was created: " + binTree.toString());
     binTree.add(2,4);
     binTree.add(7,14);
@@ -17,26 +17,41 @@ class Queue{
     //System.out.println(binTree.toString());
     for(BinaryTree.Node i:binTree)
       System.out.println(i.value);
-    /*ArrayQ<Integer> q = new ArrayQ<Integer>(0);
+      */
+    /*  
+    ArrayQ<Integer> q = new ArrayQ<Integer>(0);
     Integer hello = q.remove();
     hello = q.remove();
     for(int i = 1; i < 10; i++)
       q.add(i);
     System.out.println(q.toString());
-    for(int i = 0; i < 5; i++){
+    for(int i = 0; i < 8; i++){
       Integer dummy = q.remove();
-      System.out.println("removed value: " + dummy);
-      System.out.println(q.toString());
       }
     for(int i = 1; i < 10; i++)
       q.add(i);
     System.out.println(q.toString());
-    for(int i = 0; i < 10; i++){
+    for(int i = 0; i < 8; i++){
       Integer dummy = q.remove();
-      System.out.println("removed value: " + dummy);
-      System.out.println(q.toString());
       }
-*/
+    System.out.println(q.toString());
+    for(int i = 1; i < 10; i++)
+      q.add(i);
+    System.out.println(q.toString());
+    for(int i = 0; i < 8; i++){
+      Integer dummy = q.remove();
+      }
+    for(int i = 1; i < 10; i++)
+      q.add(i);
+    for(int i = 0; i < 8; i++){
+      Integer dummy = q.remove();
+      }
+    for(int i = 1; i < 10; i++)
+      q.add(i);
+    System.out.println(q.toString());
+    System.out.println(q.toString());
+    System.out.println(q.getLength());
+    */
     /*
     System.out.println(q.toString());
     q.add(5);
