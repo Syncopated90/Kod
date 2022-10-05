@@ -3,19 +3,26 @@ class ArrayQ<T>{
   int last;
   T[] array;
   public ArrayQ(T item){
-    this.array = (T[]) new Object[5];
+    this.array = (T[]) new Object[10];
     this.array[0] = item;
     this.first = 0;
     this.last = 1;
   }
   public void add(T item){
-    if(this.last < this.array.length && this.last != this.first)
-      this.array[last++] = item;
+    if(item == null)
+      return;
     else if(this.last == this.array.length && this.first != 0){
       this.last = 0;
       array[last++] = item;
     }
-    else if(this.last == this.first){
+    else if(this.last == this.array.length && this.first == 0){
+      T[] newArray =(T[]) new Object[this.array.length * 2];
+      for(int i = 0; i < this.array.length; i++)
+        newArray[i] = this.array[i];
+      newArray[last++] = item;
+      this.array = newArray;
+    }
+    else if(this.last == this.first && this.array[last] != null){
       T[] newArray =(T[]) new Object[this.array.length * 2];
       int j = 0;
       for(int i = this.first; i < this.array.length; i++)
@@ -27,13 +34,20 @@ class ArrayQ<T>{
       newArray[last++] = item;
       this.array = newArray;
     }
-    else if(this.last == this.array.length && this.first == 0){
-      T[] newArray =(T[]) new Object[this.array.length * 2];
-      for(int i = 0; i < this.array.length; i++)
-        newArray[i] = this.array[i];
-      newArray[last++] = item;
-      this.array = newArray;
-    }
+    else
+      this.array[last++] = item;
+  }
+  public T remove(){
+    if(this.array[first] == null)
+      return null;
+    T item = this.array[first];
+    this.array[first++] = null;
+    if( first == array.length)
+      first = 0;
+    return item;
+  }
+  public boolean empty(){
+    return this.array[first] == null;
   }
   public String toString(){
     StringBuilder sb = new StringBuilder();

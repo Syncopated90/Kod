@@ -1,13 +1,14 @@
 import java.util.Iterator;
 public class TreeIterator implements Iterator<BinaryTree.Node>{
-  private LinkedQ q;
+  //private LinkedQ q;
+  private ArrayQ q;
 
   public TreeIterator(BinaryTree tree){
-    this.q = new LinkedQ(tree.root);
+    this.q = new ArrayQ(tree.root);
   }
   @Override
   public boolean hasNext(){
-    return q.first != null;
+    return !q.empty();
   }
   @Override
   public BinaryTree.Node next(){

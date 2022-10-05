@@ -6,6 +6,9 @@ class LinkedQ<T>{
     this.first = new Node(item, null);
     this.last = this.first;
   }
+  public boolean empty(){
+    return this.first == null;
+  }
   public void add(T item){
     if(item == null)
       return;
