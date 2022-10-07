@@ -4,28 +4,24 @@ class Qsort{
       return;
     if(low < high){
       int pivot = partition(array, low, high);
-      //sort(array, low, pivot - 1);
-      //sort(array, pivot + 1, high);
+      sort(array, low, pivot - 1);
+      sort(array, pivot + 1, high);
     }
   }
   public static int partition(int[] array, int low, int high){
     int pivot = array[low];
-    //System.out.println("high: " + high + "low : " + low);
+    int pivotIndex = low;
     while(true){
-      while(low <= (high - low) && array[low] <= pivot){
+      while(low <= high && array[low] <= pivot)
         low++;
-        System.out.println(low + " " + high);
-      }
       while(array[high] > pivot && high > 0)
         high--;
       if(low > high){
-        swap(array, 0, high);
+        swap(array, pivotIndex, high);
         return high;
       }
       else
         swap(array, low++ , high--);
-
-        //System.out.println("high: " + high + "low : " + low);
     }
   }
   private static void swap (int[] array, int low, int high){
