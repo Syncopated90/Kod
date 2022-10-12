@@ -6,27 +6,18 @@ class QuickMain{
     Random random = new Random();
     int size = 5;
     LinkedList list = null;
-    /*int[] array = new int[size];
-    int[] nArray = {2,3,4,5,1};
-    for(int i = 0; i < size; i++)
-      array[i] = random.nextInt(200);
-    System.out.println(Arrays.toString(nArray));
-    Qsort.sort(nArray, 0, nArray.length - 1);
-    System.out.println(Arrays.toString(nArray));
-    System.out.println("larger array: ");
-    System.out.println(Arrays.toString(array));
-    Qsort.sort(array, 0, size - 1);
-    System.out.println(Arrays.toString(array));*/
-
-    /*for(int i = size - 1; i >= 0; i--){
-      node = new Node(random.nextInt(20), node);
-    }
-    */
+    int n = 1000; //array size
+    int loop = 10; //number of time to loop the algorithms
+    int tries = 10000;
+    //Benchmark.bench(n, loop, tries);
     list = new LinkedList(2);
-    list.append(list.new Node(3, null, null));
-    list.append(list.new Node(1, null, null));
+    list.append(list.new Node(3, null));
+    list.append(list.new Node(1, null));
+    //list.append(list.new Node(4, null));
+    //list.append(list.new Node(5, null));
+    //list.append(list2);
     System.out.println("linked list: " + list.toString());
-    list.quicksort(list.first, list.last);
+    list = list.quicksort(list.first, list.last);
     System.out.println("linked list: " + list.toString());
   }
 }
