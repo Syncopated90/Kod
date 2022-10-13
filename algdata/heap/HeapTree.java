@@ -13,6 +13,53 @@ class HeapTree implements Comparable<HeapTree>{
     this.root = null;
     this.size = 0;
   }
+  public Integer push(Integer incr){
+    HeapTree current = this;
+    current.root.head += incr;
+    Integer depth = 0;
+    while(true){
+      if(current.root.left == null && current.root.right == null)
+        return depth;
+      else if(current.root.left == null){
+        if(current.root.compareTo(current.root.right.root) <= 0)
+          return depth;
+        else{
+          swapHead(current.root, current.root.right.root);
+          current = current.root.right;
+
+          depth++;
+          continue;
+        }
+      }
+      else if(current.root.right == null){
+        if(current.root.compareTo(current.root.left.root) <= 0)
+          return depth;
+        else{
+          swapHead(current.root, current.root.left.root);
+          current = current.root.left;
+          depth++;
+          continue;
+        }
+      }
+      else{
+        if(current.root.compareTo(current.root.left.root) <= 0 && current.root.compareTo(current.root.right.root) <= 0)
+          break;
+        else if(current.root.left.root.compareTo(current.root.right.root) >= 0){
+          swapHead(current.root, current.root.right.root);
+          current = current.root.right;
+          depth++;
+          continue;
+        }
+        else{
+          swapHead(current.root, current.root.left.root);
+          current = current.root.left;
+          depth++;
+          continue;
+        }
+      }
+    }
+    return depth;
+  }
   public Integer remove(){
     if(this.root == null)
       return null;
