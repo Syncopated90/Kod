@@ -26,7 +26,6 @@ class HeapTree implements Comparable<HeapTree>{
         else{
           swapHead(current.root, current.root.right.root);
           current = current.root.right;
-
           depth++;
           continue;
         }
