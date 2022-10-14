@@ -6,6 +6,9 @@ class LinkedQFastAdd{
     this.first = new Node(item, null);
     this.last = this.first;
   }
+  public LinkedQFastAdd(){
+    this.first = this.last = null;
+  }
   public boolean empty(){
     return this.first == null;
   }

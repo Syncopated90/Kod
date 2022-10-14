@@ -6,6 +6,9 @@ class LinkedQFastRemove{
     this.first = new Node(item, null);
     this.last = this.first;
   }
+  public LinkedQFastRemove(){
+    this.first = this.last = null;
+  }
   public boolean empty(){
     return this.first == null;
   }
@@ -16,25 +19,19 @@ class LinkedQFastRemove{
     if(this.first == null)
       this.first = this.last = node;
     else{
-      Node next = this.first;
-      Node previous = null;
+      Node next = this.first.tail;
+      Node previous = this.first;
       while(next != null){
         if(item.compareTo(next.head) <= 0){
-          if(previous == null){
-            node.tail = this.first;
-            this.first = node;
-            return;
-          }
-          else{
-            previous.tail = node;
-            node.tail = next;
-            return;
-          }
+          previous.tail = node;
+          node.tail = next;
+          return;
         }
         previous = next;
         next = next.tail;
       }
       previous.tail = node;
+      this.last = node;
     }
   }
   public Integer remove(){
