@@ -1,4 +1,5 @@
 import java.util.Random;
+import java.lang.Math;
 class Benchmark{
   LinkedQFastAdd linkedFAdd;
   LinkedQFastRemove linkedFRemove;
@@ -6,8 +7,96 @@ class Benchmark{
     this.linkedFAdd = new LinkedQFastAdd();
     this.linkedFRemove = new LinkedQFastRemove();
   }
+  public void removeBench(){
+    int n = 1000;
+    int tries = 10;
+    Random random = new Random();
+    HeapArray heapArray;
+    HeapTree heapTree;
+    double t0, t1;
+    while(n < 256000){
+      double min = Double.POSITIVE_INFINITY;
+      for(int i = 0; i < tries; i++){
+        heapTree = new HeapTree();
+        for(int j = 0; j < 2 * n; j++)
+          heapTree.add(random.nextInt(10 * n));
+        t0 = System.nanoTime();
+        for(int j = 0; j < n; j++)
+          heapTree.remove();
+        t1 = System.nanoTime();
+        if((t1 - t0) < min)
+          min = t1 - t0;
+      }
+      System.out.println("Minimum time for " + n + " removes : " + min/1000 + " for tree heap");
+      System.out.println("n log n quotient: " + min/(n * n));
+      n *= 2;
+    }
+  }
+  public void arrayBench(){
+    int n = 1000;
+    int tries = 10;
+    Random random = new Random();
+    HeapArray heapArray;
+    HeapTree heapTree;
+    double t0, t1;
+    while(n < 4096000){
+      double min = Double.POSITIVE_INFINITY;
+      for(int i = 0; i < tries; i++){
+        heapArray = new HeapArray(n);
+        t0 = System.nanoTime();
+        for(int j = 0; j < n; j++)
+          heapArray.add(random.nextInt(10 * n));
+        t1 = System.nanoTime();
+        if((t1 - t0) < min)
+          min = t1 - t0;
+      }
+      System.out.println("Minimum time for " + n + " adds : " + min/1000 + " for array heap");
+      System.out.println("n log n quotient: " + min/(n * Math.log(n)));
+      /*min = Double.POSITIVE_INFINITY;
+      for(int i = 0; i < tries; i++){
+        heapTree = new HeapTree();
+        t0 = System.nanoTime();
+        for(int j = 0; j < n; j++)
+          heapTree.add(random.nextInt(10 * n));
+        t1 = System.nanoTime();
+        if((t1 - t0) < min)
+          min = t1 - t0;
+      }
+      System.out.println("Minimum time for " + n + " adds : " + min/1000 + " for tree heap");
+      System.out.println("n log n quotient: " + min/(n * Math.log(n)));*/
+      n *= 2;
+    }
+  }
+  public void treeBench(){
+    HeapTree tree = new HeapTree();
+    Random random = new Random();
+    int n = 5;
+    int nPush = 10;
+    int heapSize = 64;
+    int tries = 10;
+    for(int i = 0; i < heapSize; i++){
+      tree.add(random.nextInt(100));
+    }
+    double mean = 0;
 
-  
+    for(int i = 0; i < tries; i++){
+      mean += tree.push(random.nextInt(10) + 10);
+    }
+    mean /= nPush;
+    System.out.println("mean push depth for " + nPush + " pushes with " + heapSize + " elements: " + (int) Math.round(mean));
+    tree.root = null;
+    mean = 0;
+    for(int i = 0; i < heapSize; i++)
+      tree.add(random.nextInt(100));
+    for(int i = 0; i < nPush; i++){
+      mean += tree.add(random.nextInt(10) + 10);
+      //tree.remove();
+    }
+    mean /= nPush;
+    System.out.println("mean add depth for " + nPush + " adds with " + heapSize + " elements: " + (int) Math.round(mean));
+    tree.root = null;
+
+  }
   public void benchRemoveLinked(){
     int n = 800;
     int loop = 10;

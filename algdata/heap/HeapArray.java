@@ -5,6 +5,10 @@ class HeapArray{
     this.array = new Node[100];
     this.freeSpot = 0;
   }
+  public HeapArray(int n){
+    this.array = new Node[n];
+    this.freeSpot = 0;
+  }
   public Integer push(int incr){
     this.array[0].head += incr;
     Integer depth = sink();

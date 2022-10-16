@@ -16,13 +16,15 @@ class HeapTree implements Comparable<HeapTree>{
   public Integer push(Integer incr){
     HeapTree current = this;
     current.root.head += incr;
-    Integer depth = 0;
+    Integer depth = 1;
+    Integer swapDepth = 0;
+    boolean alreadySwapped = false;
     while(true){
       if(current.root.left == null && current.root.right == null)
-        return depth;
+        break;
       else if(current.root.left == null){
         if(current.root.compareTo(current.root.right.root) <= 0)
-          return depth;
+          break;
         else{
           swapHead(current.root, current.root.right.root);
           current = current.root.right;
@@ -32,7 +34,7 @@ class HeapTree implements Comparable<HeapTree>{
       }
       else if(current.root.right == null){
         if(current.root.compareTo(current.root.left.root) <= 0)
-          return depth;
+          break;
         else{
           swapHead(current.root, current.root.left.root);
           current = current.root.left;
@@ -128,8 +130,7 @@ class HeapTree implements Comparable<HeapTree>{
   }
   public Integer add(Integer item){
     Node node = new Node(item);
-    Integer depth = 0;
-    Integer realDepth = 0;
+    Integer depth = 1;
     if(this.root == null){
       this.root = node;
       this.size = 1;
@@ -140,7 +141,6 @@ class HeapTree implements Comparable<HeapTree>{
         current.size++;
         if(node.compareTo(current.root) < 0){
           swapHead(node, current.root);
-          realDepth = depth;
         }
         if(current.root.left == null){
           current.root.left = new HeapTree(node);
@@ -162,8 +162,6 @@ class HeapTree implements Comparable<HeapTree>{
         }
       }
     }
-    if(realDepth.compareTo(Integer.valueOf(0)) != 0)
-      depth = realDepth;
     return depth;
   }
   public void swapHead(Node node, Node current){
