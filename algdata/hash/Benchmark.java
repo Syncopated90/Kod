@@ -7,14 +7,45 @@ class Benchmark{
     int loop = 10000;
     double t0, t1;
     double min = Double.POSITIVE_INFINITY;
-    String dummy;
+    String dummy = "";
     String firstCodeString = "111 15";
     Integer firstCodeInteger = 11115;
-    String secondCodeString = "954 25"; //obs inte tänkta!!
-    Integer secondCodeInteger = 95435;
+    String secondCodeString = "984 25"; //obs inte tänkta!!
+    Integer secondCodeInteger = 98431;
     Zip zip = new Zip("postnummer.csv");
     ArrayZip aZip = new ArrayZip("postnummer.csv");
+    Integer modulo = 20011;
+    HashProbing hProbe = new HashProbing("postnummer.csv", modulo);
+    HashZip hZip = new HashZip("postnummer.csv", modulo);
+    Integer numberOfChecks = 0;
+    Integer number = 11325;
+    Integer lookupNumber = secondCodeInteger;
     for(int j = 0; j < tries; j++){
+      t0 = System.nanoTime();
+      for(int i = 0; i < loop; i++){
+        numberOfChecks = hZip.lookup(lookupNumber);
+        //dummy = hZip.lookup(lookupNumber);
+      }
+      t1 = System.nanoTime();
+      if((t1 - t0) < min)
+        min = t1 - t0;
+    }
+    System.out.println(numberOfChecks + " checks for lookup of " + lookupNumber + " mod " + modulo + " in buckets");
+    //System.out.println(dummy);
+    System.out.println("Execution time: " + min/loop + " ns");
+    min = Double.POSITIVE_INFINITY;
+    for(int j = 0; j < tries; j++){
+      t0 = System.nanoTime();
+      for(int i = 0; i < loop; i++){
+        numberOfChecks = hProbe.lookup(lookupNumber);
+      }
+      t1 = System.nanoTime();
+      if((t1 - t0) < min)
+        min = t1 - t0;
+    }
+    System.out.println(numberOfChecks + " checks for lookup of " + lookupNumber + " mod " + modulo + " for linear probing");
+    System.out.println("Execution time: " + min/loop + " ns");
+    /*for(int j = 0; j < tries; j++){
       t0 = System.nanoTime();
       for(int i = 0; i < loop; i++){
         dummy = zip.lookup(secondCodeInteger);
@@ -23,7 +54,7 @@ class Benchmark{
       if((t1 - t0) < min)
         min = t1 - t0;
     }
-    System.out.println("min search time : " + min/(loop) + " ns for Integer comparison");
+    System.out.println("min search time : " + min/(loop) + " ns for linear Integer comparison of " + secondCodeString);
     min = Double.POSITIVE_INFINITY;
     for(int j = 0; j < tries; j++){
       t0 = System.nanoTime();
@@ -34,7 +65,7 @@ class Benchmark{
       if((t1 - t0) < min)
         min = t1 - t0;
     }
-    System.out.println("min search time : " + min/(loop) + " ns for String comparison");
+    System.out.println("min search time : " + min/(loop) + " ns for linear String comparison");
     min = Double.POSITIVE_INFINITY;
     for(int j = 0; j < tries; j++){
       t0 = System.nanoTime();
@@ -67,6 +98,6 @@ class Benchmark{
       if((t1 - t0) < min)
         min = t1 - t0;
     }
-    System.out.println("min search time : " + min/(loop) + " ns for array code index lookup");
+    System.out.println("min search time : " + min/(loop) + " ns for array code index lookup");*/
   }
 }

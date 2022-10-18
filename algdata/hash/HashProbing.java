@@ -2,30 +2,32 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class HashZip{
+public class HashProbing{
   Node[] data;
   int max;
   int modulo;
 
   public Integer lookup(Integer postal){
     Integer hash = postal % modulo;
-    Node node = this.data[hash];
-    int amount = 1;
-    while(node != null && node.code.equals(postal) == false){
-      node = node.next;
-      amount++;
-    }
-    if(node != null)
-      //return node.name;
-      return amount;
+    int numberOfChecks = 1;
+    if(this.data[hash] != null && this.data[hash].code.equals(postal))
+      return numberOfChecks;
+      //return this.data[hash].name;
     else
-      return null;
+      while(true){
+        if(this.data[hash] != null && this.data[hash].code.equals(postal))
+          //return this.data[hash].name;
+          return numberOfChecks;
+        numberOfChecks++;
+        hash++;
+        if(hash.equals(modulo))
+          hash = 0;
+      }
   }
 
-  public HashZip(String file, Integer modulo){
+  public HashProbing(String file, Integer modulo){
     this.modulo = modulo;
     data = new Node[modulo];
-    Node nextInBucket;
     try(BufferedReader br = new BufferedReader(new FileReader(file))){
       String line;
       int i = 0;
@@ -33,13 +35,19 @@ public class HashZip{
         String[] row =line.split(",");
         Integer code = Integer.valueOf(row[0].replaceAll("\\s", ""));
         Node node = new Node(code, row[1], Integer.valueOf(row[2]));
-        nextInBucket = this.data[code % modulo];
-        if(nextInBucket == null)
-          this.data[code % modulo] = node;
+        Integer hash = code % modulo;
+        if(this.data[hash] == null)
+          this.data[hash] = node;
         else{
-          while(nextInBucket.next != null)
-            nextInBucket = nextInBucket.next;
-          nextInBucket.next = node;
+          while(this.data[hash] != null){
+            hash++;
+            if(hash.equals(modulo))
+              hash = 0;
+          }
+          if(this.data[hash] == null)
+            this.data[hash] = node;
+          else
+            System.out.println("array was full??");
         }
       }
       this.max = i - 1;
@@ -52,13 +60,11 @@ public class HashZip{
     Integer code;
     String name;
     Integer pop;
-    Node next;
 
     public Node(Integer code, String name, Integer pop){
       this.code = code;
       this.name = name;
       this.pop = pop;
-      this.next = null;
     }
   }
 }

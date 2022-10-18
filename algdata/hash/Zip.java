@@ -58,7 +58,7 @@ public class Zip{
       String line;
       int i = 0;
       while((line = br.readLine()) != null){
-        String[] row =line.split(",");
+        String[] row = line.split(",");
         Integer code = Integer.valueOf(row[0].replaceAll("\\s", ""));
         this.data[i++] = new Node(code, row[0], row[1], Integer.valueOf(row[2]));
       }

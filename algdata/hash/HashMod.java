@@ -5,7 +5,7 @@ class HashMod{
     Integer[] keys;
     int max;
     public void collisions(int mod){
-      int modSize = 10;
+      int modSize = 15;
       int[] data = new int[mod];
       int[] cols = new int[modSize];
 
