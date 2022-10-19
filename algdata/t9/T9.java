@@ -5,15 +5,8 @@ class T9{
     trie.add("bsl");
     trie.add("asl");
     //System.out.println(trie.search(args[0]));
-    String[] words = {"hello", "world"};
-    for(String i: words){
-      i = "world " + i;
-      System.out.println(i);
-    }
 
     /*
-
-
     System.out.println(trie.codeToIndex(trie.charToCode('a')));
     trie.search("12");
     String hello = "9234";

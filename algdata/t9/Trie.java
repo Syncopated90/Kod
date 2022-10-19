@@ -54,7 +54,6 @@ class Trie{
     return a + b + c;
   }
 
-
   public class Node{
     public Node[] next;
     public boolean exist;
@@ -99,24 +98,10 @@ class Trie{
             c = Character.toString(codeToChar((key - 1) * 3 + 3)) + c;
         }
       }
-      /*else if(word.length() > 1){
-        if(this.next[(key - 1) * 3] != null){
-          a = Character.toString(codeToChar((key - 1) * 3 + 1));
-          a += this.next[(key - 1) * 3].search(word.substring(1, word.length()));
-        }
-        if(this.next[((key - 1) * 3 + 1)] != null){
-          b = Character.toString(codeToChar((key - 1) * 3 + 2));
-          b += this.next[((key - 1) * 3 + 1)].search(word.substring(1, word.length()));
-        }
-        if(this.next[((key - 1) * 3 + 2)] != null){
-          c = Character.toString(codeToChar((key - 1) * 3 + 3));
-          c += this.next[((key - 1) * 3 + 2)].search(word.substring(1, word.length()));
-        }
-      }*/
       return a + b + c;
     }
   }
-
+  
   public int charToCode(char letter){//returns 1 - 27 for respective letter
     if((int) letter == 246)//ö
       return 27;
