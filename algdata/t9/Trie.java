@@ -1,3 +1,7 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
 class Trie{
   public Trie[] next;
   public boolean exist;
@@ -11,6 +15,17 @@ class Trie{
     this.next = new Trie[27];
     this.exist = word;
   }
+  public void addList(String file){
+    try(BufferedReader br = new BufferedReader(new FileReader(file))){
+      String line;
+      while((line = br.readLine()) != null){
+        add(line);
+      }
+    }catch (IOException ioe){
+      System.out.println("file " + file + " not found");
+    }
+  }
+
   public void add(String word){
     Trie[] letters = this.next;
     for(int i = 0; i < word.length(); i++){
