@@ -1,21 +1,21 @@
-class Trie{
-  public Trie[] next;
+class Node{
+  public Node[] next;
   public boolean exist;
 
-  public Trie(){
-    this.next = new Trie[27];
+  public Node(){
+    this.next = new Node[27];
     this.exist = false;
   }
 
-  public Trie(boolean word){
-    this.next = new Trie[27];
+  public Node(boolean word){
+    this.next = new Node[27];
     this.exist = word;
   }
   public void add(String word){
-    Trie[] letters = this.next;
+    Node[] letters = this.next;
     for(int i = 0; i < word.length(); i++){
       if(letters[codeToIndex(charToCode(word.charAt(i)))] == null)
-        letters[codeToIndex(charToCode(word.charAt(i)))] = new Trie(false);
+        letters[codeToIndex(charToCode(word.charAt(i)))] = new Node(false);
       if(i == word.length() - 1)
         letters[codeToIndex(charToCode(word.charAt(i)))].exist = true;
       letters = letters[codeToIndex(charToCode(word.charAt(i)))].next;
@@ -58,19 +58,19 @@ class Trie{
     else if(word.length() > 1){
       if(this.next[(key - 1) * 3] != null){
         array1 = this.next[(key - 1) * 3].search(word.substring(1, word.length()));
-        for(int i = 0; i < array1.length;i++)
-          array1[i] = Character.toString(codeToChar((key - 1) * 3 + 1)) + array1[i];
+        for(String s:array1)
+          s = Character.toString(codeToChar((key - 1) * 3 + 1)) + s;
       }
       if(this.next[((key - 1) * 3 + 1)] != null){
         array2 = this.next[((key - 1) * 3 + 1)].search(word.substring(1, word.length()));
-        for(int i = 0; i < array2.length;i++)
-          array2[i] = Character.toString(codeToChar((key - 1) * 3 + 2)) + array2[i];
+        for(String s:array2)
+          s = Character.toString(codeToChar((key - 1) * 3 + 2)) + s;
 
       }
       if(this.next[((key - 1) * 3 + 2)] != null){
         array3 = this.next[((key - 1) * 3 + 2)].search(word.substring(1, word.length()));
-        for(int i = 0; i < array3.length;i++)
-          array3[i] = Character.toString(codeToChar((key - 1) * 3 + 3)) + array3[i];
+        for(String s:array3)
+          s = Character.toString(codeToChar((key - 1) * 3 + 3)) + s;
       }
     }
     String[] array = new String[array1.length + array2.length + array3.length];
